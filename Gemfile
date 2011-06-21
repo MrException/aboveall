@@ -11,3 +11,5 @@ gem 'uglifier'
 gem 'haml-rails'
 
 gem 'jquery-rails'
+
+gem 'rspec-rails'

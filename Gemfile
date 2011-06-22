@@ -11,9 +11,11 @@ gem 'sqlite3'
 gem 'coffee-script'
 gem 'uglifier'
 gem 'haml-rails'
+gem 'sass-rails'
 
-gem 'sass-rails', :git => 'https://github.com/rails/sass-rails.git'
-gem 'compass', :git => 'https://github.com/chriseppstein/compass.git', :branch => 'rails31'
+# Not using compass for now, to FUCKING confusing
+#gem 'sass-rails', :git => 'https://github.com/rails/sass-rails.git'
+#gem 'compass', :git => 'https://github.com/chriseppstein/compass.git', :branch => 'rails31'
 
 gem 'jquery-rails'
 

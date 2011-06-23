@@ -1,0 +1,48 @@
+$selected-background: #FFF;
+$unselected-background: #C4C4C4;
+$selected-color: #000;
+$unselected-color: #666;
+
+ul#tab-nav {
+  list-style-type: none; /* no bullets */
+
+  padding: 3px 10px 0px 10px;
+
+  /* need to adjust padding bottom when left/right borders */
+  /* overlap the top border of the content area */
+  padding-bottom: 3px;
+
+  margin: 0;
+  margin-top: 1em;
+
+  font: bold 14px verdana, arial, sans-serif; /* set font as desired */
+
+  li {
+    display: inline; /* side-by-side instead of up and down */
+
+    a {
+      background: $unselected-background;
+      color: $unselected-color;
+      padding: 8px 20px 8px 20px;
+      border: 2px solid black;
+
+      /*set padding (tab size) as desired;*/
+      /*FIRST number must change with respect to padding-top (X) above */
+      padding: 3px 20px;
+      margin: 0;
+
+      text-decoration: none;
+    }
+
+    a#selected {
+      background: $selected-background;
+      color: $selected-color;
+      border-bottom: 2px solid white;
+    }
+
+    a:hover {
+      color: $selected-color;
+      background: $selected-background;
+    }
+  }
+}

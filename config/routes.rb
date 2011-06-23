@@ -1,7 +1,7 @@
 Aboveall::Application.routes.draw do
   get 'pages/home'
 
-  get 'pages/about'
+  get 'pages/about', :as => 'about'
 
   root :to => 'pages#home'
 

@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', :git => 'git://github.com/rails/rails.git', :branch => '3-1-stable'
+gem 'rails', '~> 3.1.0.rc5'
 
 gem 'sqlite3'
 
@@ -9,6 +9,8 @@ gem 'coffee-script'
 gem 'uglifier'
 gem 'haml-rails'
 gem 'sass-rails'
+
+gem 'unicorn'
 
 # Not using compass for now, to FUCKING confusing
 #gem 'sass-rails', :git => 'https://github.com/rails/sass-rails.git'

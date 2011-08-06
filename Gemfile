@@ -12,6 +12,8 @@ gem 'sass-rails'
 
 gem 'unicorn'
 
+gem 'devise'
+
 # Not using compass for now, to FUCKING confusing
 #gem 'sass-rails', :git => 'https://github.com/rails/sass-rails.git'
 #gem 'compass', :git => 'https://github.com/chriseppstein/compass.git', :branch => 'rails31'

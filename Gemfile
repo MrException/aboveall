@@ -24,6 +24,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'spork'
   gem 'simplecov'
+  gem 'capybara'
 end
 
 group :test do
@@ -32,6 +33,7 @@ end
 
 group :development do
   gem 'guard-rspec'
+  gem 'guard-spork'
 
   gem 'rb-inotify'
   gem 'libnotify'

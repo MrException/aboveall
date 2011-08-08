@@ -22,4 +22,17 @@ gem 'jquery-rails'
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'spork'
+  gem 'simplecov'
+end
+
+group :test do
+  gem 'factory_girl_rails'
+end
+
+group :development do
+  gem 'guard-rspec'
+
+  gem 'rb-inotify'
+  gem 'libnotify'
 end

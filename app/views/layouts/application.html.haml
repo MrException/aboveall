@@ -9,10 +9,10 @@
     .container
       .header.span-24
         = render 'layouts/header'
-        %section
-          - flash.each do |key, value|
-            = content_tag(:div, value, :class => "flash #{key}")
       .span-24
         = render 'layouts/tabs'
         .content.span-23.last
+          %section
+            - flash.each do |name, msg|
+              = content_tag :div, msg, :class => "flash #{name}" if msg.is_a?(String)
           = yield

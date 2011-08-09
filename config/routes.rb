@@ -1,13 +1,13 @@
 Aboveall::Application.routes.draw do
-  get "users/show"
+  root :to => 'pages#home'
 
   devise_for :users
+  resources :users, :only => :show
 
   get 'pages/home'
 
   get 'pages/about', :as => 'about'
 
-  root :to => 'pages#home'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

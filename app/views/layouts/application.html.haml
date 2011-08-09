@@ -1,15 +1,18 @@
 %html
-%head
-  %title
-    = @title
-    \- Above All
-  = csrf_meta_tags
-  = render 'layouts/stylesheets'
-%body
-  .container
-    .header.span-24
-      = render 'layouts/header'
-    .span-24
-      = render 'layouts/tabs'
-      .content.span-23.last
-        = yield
+  %head
+    %title
+      = @title
+      \- Above All
+    = csrf_meta_tags
+    = render 'layouts/stylesheets'
+  %body
+    .container
+      .header.span-24
+        = render 'layouts/header'
+        %section
+          - flash.each do |key, value|
+            = content_tag(:div, value, :class => "flash #{key}")
+      .span-24
+        = render 'layouts/tabs'
+        .content.span-23.last
+          = yield

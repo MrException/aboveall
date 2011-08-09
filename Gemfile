@@ -34,6 +34,7 @@ end
 group :development do
   gem 'guard-rspec'
   gem 'guard-spork'
+  gem 'guard-livereload'
 
   gem 'rb-inotify'
   gem 'libnotify'

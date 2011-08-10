@@ -2,5 +2,6 @@
   - imgprops = { :alt => 'Above All', :width => '400', :height => '160' }
   = link_to image_tag('logo.png', imgprops), root_path
 #nav-links.span-6.last.prepend-12
-  = render 'devise/menu/registration_items'
-  = render 'devise/menu/login_items'
+  %ul
+    = render 'devise/menu/registration_items'
+    = render 'devise/menu/login_items'

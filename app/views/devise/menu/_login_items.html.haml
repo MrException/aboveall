@@ -1,7 +1,9 @@
-- if user_signed_in?
-  -#= link_to('Logout', destroy_user_session_path)
-  -# Use this if switching back to using 'delete' method for logout
-  -# See config/initializers/devise.rb 'config.sign_out_via'
-  = button_to('Logout', destroy_user_session_path, :method => :delete)
-- else
-  = link_to('Login', new_user_session_path)
+%li
+  - if user_signed_in?
+    -# See config/initializers/devise.rb 'config.sign_out_via'
+    -# Use this if switching back to using 'get' method for logout
+    -#= link_to('Logout', destroy_user_session_path)
+    -# Use this if switching back to using 'delete' method for logout
+    = button_to('Logout', destroy_user_session_path, :method => :delete)
+  - else
+    = link_to('Login', new_user_session_path)

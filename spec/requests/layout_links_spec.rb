@@ -29,7 +29,7 @@ describe "LayoutLinks" do
       fill_in 'Email', :with => 'user@test.com'
       fill_in 'Password', :with => 'please'
       click_on 'Sign in'
-      find('#nav-links').should have_content('Logout')
+      find('#nav-links form').should have_selector('input', :type => 'submit', :value => 'Logout')
       find('#nav-links').should have_content('Edit account')
     end
 

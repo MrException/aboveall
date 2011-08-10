@@ -10,6 +10,7 @@
 
 body {
   background: white;
+  font-family: Arial;
 }
 
 .header {
@@ -33,6 +34,11 @@ body {
 #nav-links {
   text-align: right;
 
+  li {
+    list-style-type: none;
+    display: inline-block;
+  }
+
   a {
     color: black;
     text-decoration: none;
@@ -48,5 +54,9 @@ body {
     border: 2px solid black;
     @include round-corners(10px);
     padding: 3px;
+
+    /* Don't particularily like specifying these so fine grained. */
+    font-size: 12px;
+    height: 25px;
   }
 }

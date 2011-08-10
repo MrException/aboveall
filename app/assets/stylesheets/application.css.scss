@@ -40,4 +40,13 @@ body {
     @include round-corners(10px);
     padding: 3px;
   }
+
+  input {
+    background: white;
+    color: black;
+    text-decoration: none;
+    border: 2px solid black;
+    @include round-corners(10px);
+    padding: 3px;
+  }
 }

@@ -1,6 +1,7 @@
 %h1 Welcome
 %p Lorem ipsum.... blah blah
-- @users.each do |user|
-  %p
-    User:
-    = link_to user.last_name, user
+- if @users
+  - @users.each do |user|
+    %p
+      User:
+      = link_to user.last_name, user

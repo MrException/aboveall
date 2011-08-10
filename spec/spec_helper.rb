@@ -1,7 +1,5 @@
 require 'rubygems'
 require 'spork'
-require 'simplecov'
-SimpleCov.start
 
 Spork.prefork do
   # Loading more in this block will cause your tests to run faster. However,
@@ -9,12 +7,20 @@ Spork.prefork do
   # need to restart spork for it take effect.
 
   # This file is copied to spec/ when you run 'rails generate rspec:install'
-  ENV["RAILS_ENV"] ||= 'test'
-  require File.expand_path("../../config/environment", __FILE__)
+  ENV["RAILS_ENV"] = 'test'
+  require File.expand_path("../../config/environment.rb", __FILE__)
+
+  require 'simplecov'
+  SimpleCov.start
+
   require 'rspec/rails'
 
   require 'capybara/rspec'
   require 'capybara/rails'
+  
+  # for some reason FactoryGirl can not find my
+  # factories unless I call this
+  #FactoryGirl.find_definitions
 
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
@@ -38,6 +44,13 @@ Spork.prefork do
     # examples within a transaction, remove the following line or assign false
     # instead of true.
     config.use_transactional_fixtures = true
+
+    ### test helpers
+    # This doesn't work. Why??
+    # Devise docs say #sign_in should exist
+    def test_sign_in(user)
+      sign_in(user)
+    end
   end
 end
 

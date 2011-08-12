@@ -6,14 +6,13 @@ guard 'rails' do
   watch(%r{^(config|lib)/.*})
 end
 
-guard 'livereload', :host => 'localhost', :port => '35729' do
-  watch(%r{app/.+\.(erb|haml)})
-  watch(%r{app/helpers/.+\.rb})
-  #watch(%r{(public/|app/assets).+\.(css|js|html)})
-  #watch(%r{(app/assets/.+\.css)\.s[ac]ss}) { |m| m[1] }
-  #watch(%r{(app/assets/.+\.js)\.coffee}) { |m| m[1] }
-  watch(%r{app/assets/stylesheets/([^\.].+\.css)\.s[ac]ss}) { |m| '/assets/' + m[1] }
-  watch(%r{config/locales/.+\.yml})
+guard 'livereload' do
+  watch(%r{^app/.+\.(erb|haml)$})
+  watch(%r{^app/helpers/.+\.rb$})
+  watch(%r{^(public/|app/assets).+\.(css|js|html)$})
+  watch(%r{^(app/assets/.+\.css)\.s[ac]ss$}) { |m| m[1] }
+  watch(%r{^(app/assets/.+\.js)\.coffee$}) { |m| m[1] }
+  watch(%r{^config/locales/.+\.yml$})
 end
 
 guard 'spork', :cucumber_env => { 'RAILS_ENV' => 'test' }, :rspec_env => { 'RAILS_ENV' => 'test' } do
@@ -22,6 +21,7 @@ guard 'spork', :cucumber_env => { 'RAILS_ENV' => 'test' }, :rspec_env => { 'RAIL
   watch(%r{^config/environments/.+\.rb$})
   watch(%r{^config/initializers/.+\.rb$})
   watch('spec/spec_helper.rb')
+  watch('spec/factories.rb')
 end
 
 guard 'rspec', :cli => '--drb', :version => 2 do
@@ -40,4 +40,5 @@ guard 'rspec', :cli => '--drb', :version => 2 do
   watch('app/controllers/application_controller.rb')  { "spec/controllers" }
   # Capybara request specs
   watch(%r{^app/views/(.+)/.*\.(erb|haml)$})          { |m| "spec/requests/#{m[1]}_spec.rb" }
+  watch('spec/factories.rb')
 end

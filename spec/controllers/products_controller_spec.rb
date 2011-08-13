@@ -50,23 +50,23 @@ describe ProductsController do
   end
 
   describe "POST create" do
-    let(:product) { FactoryGirl.build(:product) }
+    let(:product_params) { FactoryGirl.attributes_for(:product) }
 
     describe "with valid params" do
       it "creates a new Product" do
         expect {
-          post :create, :product => product
+          post :create, :product => product_params
         }.to change(Product, :count).by(1)
       end
 
       it "assigns a newly created product as @product" do
-        post :create, :product => product
+        post :create, :product => product_params
         assigns(:product).should be_a(Product)
         assigns(:product).should be_persisted
       end
 
       it "redirects to the created product" do
-        post :create, :product => product
+        post :create, :product => product_params
         response.should redirect_to(Product.last)
       end
     end

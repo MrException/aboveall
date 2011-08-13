@@ -1,5 +1,6 @@
 // import each SCSS file here and they will be included on each page
 @import "pages";
+@import "products";
 @import "partials/tabs";
 
 @mixin round-corners($pixels) {
@@ -23,12 +24,21 @@ body {
   }
 }
 
-.content {
+.flash {
+  margin-top: 10px;
+}
+
+#main {
   /*@include round-corners(10px);*/
   padding: 2em;
   background: white;
   border: 2px solid black;
   margin: 0;
+  padding: 0;
+}
+
+.content {
+  padding: 24px;
 }
 
 #nav-links {
@@ -56,6 +66,7 @@ body {
     padding: 3px;
 
     /* Don't particularily like specifying these so fine grained. */
+    /* But since it's only for ONE button, probably ok */
     font-size: 12px;
     height: 25px;
   }

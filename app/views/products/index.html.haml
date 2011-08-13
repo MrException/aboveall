@@ -1,29 +1,6 @@
-%h1 Listing products
-
-%table
-  %tr
-    %th Title
-    %th Description
-    %th Picture
-    %th Price
-    %th Unit
-    %th Hidden
-    %th
-    %th
-    %th
-
-  - @products.each do |product|
-    %tr
-      %td= product.title
-      %td= product.description
-      %td= product.picture
-      %td= product.price
-      %td= product.unit
-      %td= product.hidden
-      %td= link_to 'Show', product
-      %td= link_to 'Edit', edit_product_path(product)
-      %td= link_to 'Destroy', product, :confirm => 'Are you sure?', :method => :delete
-
-%br
-
-= link_to 'New Product', new_product_path
+#products-list.span-3
+  %ul
+    - @products.each do |product|
+      %li.product-link= link_to product.title, product
+  %li
+    = link_to 'Create New Product', new_product_path

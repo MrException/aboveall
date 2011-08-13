@@ -8,8 +8,8 @@ FactoryGirl.define do
   end
 
   factory :product do
-    title 'Sticky Budz'
-    description "Some sweet, sweet mary jane. It'll get you stoned!"
+    sequence(:title) { |n| "Product Name #{n}" }
+    description "A nice product description here."
     price 9.99
     unit 'g'
     hidden false

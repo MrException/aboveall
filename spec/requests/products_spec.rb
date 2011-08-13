@@ -40,6 +40,13 @@ describe "Products" do
       end
     end
 
+    it "still has the products list" do
+      visit root_path
+      click_on 'Products'
+      find('#products-list').click_on 'Product Name'
+      find('#products-list').should have_content('Product Name')
+    end
+
     it "can be navigated to from list page" do
       visit root_path
       click_on 'Products'

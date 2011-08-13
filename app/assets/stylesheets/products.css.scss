@@ -3,7 +3,22 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 #products-list {
   border-right: 2px solid black;
-  height: auto;
-  padding: 0;
+  padding: 0px;
   margin: 0;
+  height: 100%;
+
+  ul {
+    padding: 0px;
+    margin: 0;
+  }
+
+  li {
+    padding: 10px;
+    list-style-type: none;
+    border-bottom: 2px solid black;
+  }
+
+  li.link {
+    border-bottom: 0px;
+  }
 }

@@ -3,7 +3,6 @@ class CreateProducts < ActiveRecord::Migration
     create_table :products do |t|
       t.string :title
       t.string :description
-      t.binary :picture
       t.decimal :price
       t.string :unit
       t.boolean :hidden

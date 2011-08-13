@@ -15,7 +15,6 @@ ActiveRecord::Schema.define(:version => 20110810211432) do
   create_table "products", :force => true do |t|
     t.string   "title"
     t.string   "description"
-    t.binary   "picture"
     t.decimal  "price"
     t.string   "unit"
     t.boolean  "hidden"

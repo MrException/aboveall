@@ -9,16 +9,18 @@ gem 'coffee-script'
 gem 'uglifier'
 gem 'haml-rails'
 gem 'sass-rails'
+gem 'jquery-rails'
 
 gem 'unicorn'
 
 gem 'devise'
 
-# Not using compass for now, to FUCKING confusing
-#gem 'sass-rails', :git => 'https://github.com/rails/sass-rails.git'
-#gem 'compass', :git => 'https://github.com/chriseppstein/compass.git', :branch => 'rails31'
+# potentially going to use these
+# gem 'launchy'
+# gem 'paperclip'
+# gem 'shoulda'
 
-gem 'jquery-rails'
+gem 'cancan'
 
 group :development, :test do
   gem 'rspec-rails'

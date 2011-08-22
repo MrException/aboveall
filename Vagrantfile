@@ -28,25 +28,30 @@ Vagrant::Config.run do |config|
   # config.vm.share_folder "v-data", "/vagrant_data", "../data"
 
   # Setup chef using Opscode Hosted Chef
-  config.vm.provision :chef_client do |chef|
- 
-    # Set up some organization specific values based on environment variable above.
-    chef.chef_server_url = "https://api.opscode.com/organizations/mrexception"
-    chef.validation_key_path = "#{ENV['HOME']}/.chef/mrexception-validator.pem"
-    chef.validation_client_name = "mrexception-validator"
- 
-    # Change the node/client name for the Chef Server
-    chef.node_name = "aboveall-vagrant"
- 
-    # Put the client.rb in /etc/chef so chef-client can be run w/o specifying
-    chef.provisioning_path = "/etc/chef"
- 
-    # logging
-    chef.log_level = :info
- 
-    # adjust the run list to suit your testing needs
-    chef.run_list = [
-      "recipe[ruby1.9]"
-    ]
+  #config.vm.provision :chef_client do |chef|
+
+  # Set up some organization specific values based on environment variable above.
+  #chef.chef_server_url = "https://api.opscode.com/organizations/mrexception"
+  #chef.validation_key_path = "#{ENV['HOME']}/.chef/mrexception-validator.pem"
+  #chef.validation_client_name = "mrexception-validator"
+
+  # Change the node/client name for the Chef Server
+  #chef.node_name = "aboveall-vagrant"
+
+  # Put the client.rb in /etc/chef so chef-client can be run w/o specifying
+  #chef.provisioning_path = "/etc/chef"
+
+  # logging
+  #chef.log_level = :info
+
+  # adjust the run list to suit your testing needs
+  #chef.run_list = [
+  #"recipe[ruby1.9]"
+  #]
+  #end
+  #
+  config.vm.provision :chef_solo do |chef|
+    chef.cookbooks_path = "chef/cookbooks"
+    chef.add_recipe("main")
   end
 end

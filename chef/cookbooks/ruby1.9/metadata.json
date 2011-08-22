@@ -1,0 +1,32 @@
+{
+  "dependencies": {
+  },
+  "name": "ruby1.9",
+  "maintainer": "Carlo Zottmann",
+  "maintainer_email": "carlo@zottmann.org",
+  "description": "Installs Ruby 1.9 from source.",
+  "long_description": "Installs Ruby 1.9 from source",
+  "license": "WTFPL",
+  "version": "1.0",
+  "attributes": {
+  },
+  "suggestions": {
+  },
+  "platforms": {
+    "debian": ">= 0.0.0",
+    "ubuntu": ">= 0.0.0"
+  },
+  "recommendations": {
+  },
+  "recipes": {
+    "ruby1.9": "Installs Ruby 1.9 from source.",
+  },
+  "groupings": {
+  },
+  "conflicting": {
+  },
+  "replacing": {
+  },
+  "providing": {
+  }
+}

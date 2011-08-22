@@ -1,0 +1,16 @@
+#!/bin/bash
+
+. /lib/lsb/init-functions
+log_daemon_msg "Configuring APT cache proxy" "(based on deepthought's presence...)"
+
+ping -c 1 deepthought &> /dev/null
+
+if [ $? = "0" ]; then
+    log_daemon_msg "found live $?"
+    echo "Acquire::http::Proxy \"http://deepthought:3142\";" > /etc/apt/apt.conf.d/01deepthoughtproxy
+else
+    log_daemon_msg "not found"
+    rm /etc/apt/apt.conf.d/01deepthoughtproxy &> /dev/null
+fi
+
+log_end_msg 0

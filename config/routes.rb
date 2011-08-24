@@ -1,4 +1,6 @@
 Aboveall::Application.routes.draw do
+  get "users/index"
+
   resources :products
 
   root :to => 'pages#home'

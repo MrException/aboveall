@@ -21,7 +21,7 @@ Aboveall::Application.configure do
 
   # Do not compress assets
   config.assets.compress = false
-  
+
   ### ActionMailer config
   # Don't care if the mailer can't send
   #config.action_mailer.raise_delivery_errors = false
@@ -31,4 +31,13 @@ Aboveall::Application.configure do
   config.action_mailer.perform_deliveries = false
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default :charset => 'utf-8'
+
+  silence_warnings do
+    begin
+      require 'pry'
+      IRB = Pry
+    rescue LoadError
+    end
+  end
+
 end

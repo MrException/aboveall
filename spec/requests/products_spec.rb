@@ -86,6 +86,8 @@ describe "Products" do
       capy_login_admin
     end
 
+    let(:image) { File.join(::Rails.root, 'spec/test_image.jpg')}
+
     it "should not create with invalid data" do
       visit root_path
       click_on "Products"
@@ -109,10 +111,12 @@ describe "Products" do
         fill_in "Description", :with => "A Description"
         fill_in "Price", :with => "1000000.00"
         fill_in "Unit", :with => "g"
+        attach_file "Image", image
         click_on "Save"
         page.should_not have_selector "div#error_explanation"
       end.should change(Product, :count)
     end
+
   end
 
   describe "edit page" do

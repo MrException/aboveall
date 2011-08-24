@@ -30,6 +30,7 @@ FactoryGirl.define do
     description "A nice product description here."
     price 9.99
     unit 'g'
+    image_file_name 'test_image.jpg'
     hidden false
   end
 end

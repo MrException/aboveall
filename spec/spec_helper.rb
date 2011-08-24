@@ -8,10 +8,14 @@ Spork.prefork do
 
   # This file is copied to spec/ when you run 'rails generate rspec:install'
   ENV["RAILS_ENV"] = 'test'
+
+  require "rails/application"
+  Spork.trap_method(Rails::Application::RoutesReloader, :reload!)
+
   require File.expand_path("../../config/environment.rb", __FILE__)
 
-  require 'simplecov'
-  SimpleCov.start
+  #require 'simplecov'
+  #SimpleCov.start
 
   require 'rspec/rails'
 

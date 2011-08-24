@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
-gem 'rails', '~> 3.1.0.rc'
+#gem 'rails', '~> 3.1.0.rc'
+gem 'rails', :git => 'https://github.com/rails/rails.git', :branch => '3-1-stable'
 
 gem 'sqlite3'
 
@@ -26,6 +27,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'spork', '~> 0.9.0.rc'
   gem 'simplecov'
+  gem 'pry'
 end
 
 group :test do

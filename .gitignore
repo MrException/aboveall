@@ -6,3 +6,4 @@ tmp/
 *.swp
 doc/*.pdf
 coverage
+public/system

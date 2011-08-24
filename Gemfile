@@ -18,8 +18,8 @@ gem 'devise'
 
 # potentially going to use these
 # gem 'launchy'
-# gem 'paperclip'
-# gem 'shoulda'
+gem 'paperclip'
+gem 'shoulda'
 
 gem 'cancan'
 

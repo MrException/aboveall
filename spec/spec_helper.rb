@@ -21,6 +21,7 @@ Spork.prefork do
 
   require 'capybara/rspec'
   require 'capybara/rails'
+  require 'paperclip/matchers'
 
   # for some reason FactoryGirl can not find my
   # factories unless I call this
@@ -52,6 +53,8 @@ Spork.prefork do
     # Include test helpers
     config.include RequestMacros
     config.extend ControllerMacros, :type => :controller
+
+    config.include Paperclip::Shoulda::Matchers
   end
 end
 

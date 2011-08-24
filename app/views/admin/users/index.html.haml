@@ -1,2 +1,15 @@
-%h1 Admin::Users#index
-%p Find me in app/views/admin/users/index.html.haml
+.content
+  %h1 User List
+
+  %table#user-list
+    %tr
+      %th Last Name
+      %th First Name
+      %th Email
+      %th Role
+    - @users.each do |user| 
+      %tr.user
+        %td= user.last_name
+        %td= user.first_name
+        %td= user.email
+        %td= user.role.name

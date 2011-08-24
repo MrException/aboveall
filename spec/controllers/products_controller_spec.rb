@@ -3,21 +3,6 @@ require 'spec_helper'
 describe ProductsController do
   login_user
 
-  describe "DELETE destroy" do
-    it "destroys the requested product" do
-      product = FactoryGirl.create(:product)
-      expect {
-        delete :destroy, :id => product.id.to_s
-      }.to change(Product, :count).by(-1)
-    end
-
-    it "redirects to the products list" do
-      product = FactoryGirl.create(:product)
-      delete :destroy, :id => product.id.to_s
-      response.should redirect_to(products_url)
-    end
-  end
-
   describe "GET index" do
     it "assigns all products as @products" do
       product = FactoryGirl.create(:product)
@@ -134,5 +119,19 @@ describe ProductsController do
     end
   end
 
+  describe "DELETE destroy" do
+    it "destroys the requested product" do
+      product = FactoryGirl.create(:product)
+      expect {
+        delete :destroy, :id => product.id.to_s
+      }.to change(Product, :count).by(-1)
+    end
+
+    it "redirects to the products list" do
+      product = FactoryGirl.create(:product)
+      delete :destroy, :id => product.id.to_s
+      response.should redirect_to(products_url)
+    end
+  end
 
 end

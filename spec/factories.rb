@@ -23,6 +23,11 @@ FactoryGirl.define do
       email "admin@test.com"
       association :role, :factory => :admin_role
     end
+
+    factory :dummy_user do
+      sequence(:email) { |n| "user#{n}@test.com" }
+      association :role, :factory => :unauthorized_role
+    end
   end
 
   factory :product do

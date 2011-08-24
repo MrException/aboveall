@@ -2,5 +2,6 @@
   %ul
     - @products.each do |product|
       %li.product-link= link_to product.title, product
-  %li.link
-    = link_to 'Create New Product', new_product_path
+  - if can? :create, Product
+    %li.link
+      = link_to 'Create New Product', new_product_path

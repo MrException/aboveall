@@ -1,11 +1,10 @@
 class ProductsController < ApplicationController
   before_filter :authenticate_user!
+  load_and_authorize_resource
 
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @products }
@@ -17,8 +16,6 @@ class ProductsController < ApplicationController
   def show
     @products = Product.all
 
-    @product = Product.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @product }
@@ -28,8 +25,6 @@ class ProductsController < ApplicationController
   # GET /products/new
   # GET /products/new.json
   def new
-    @product = Product.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @product }
@@ -38,14 +33,11 @@ class ProductsController < ApplicationController
 
   # GET /products/1/edit
   def edit
-    @product = Product.find(params[:id])
   end
 
   # POST /products
   # POST /products.json
   def create
-    @product = Product.new(params[:product])
-
     respond_to do |format|
       if @product.save
         format.html { redirect_to @product, notice: 'Product was successfully created.' }
@@ -60,8 +52,6 @@ class ProductsController < ApplicationController
   # PUT /products/1
   # PUT /products/1.json
   def update
-    @product = Product.find(params[:id])
-
     respond_to do |format|
       if @product.update_attributes(params[:product])
         format.html { redirect_to @product, notice: 'Product was successfully updated.' }
@@ -76,7 +66,6 @@ class ProductsController < ApplicationController
   # DELETE /products/1
   # DELETE /products/1.json
   def destroy
-    @product = Product.find(params[:id])
     @product.destroy
 
     respond_to do |format|

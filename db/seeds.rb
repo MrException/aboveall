@@ -5,6 +5,17 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+puts 'DELETING USERS AND ROLES'
+User.delete_all
+Role.delete_all
+
+puts 'CREATING ROLES'
+admin_role = Role.create! ({ :name => 'admin'})
+authorized_role = Role.create! ({ :name => 'authorized'})
+unauthorized_role = Role.create! ({ :name => 'unauthorized'})
+puts "Created three roles.\n"
+
 puts 'SETTING UP DEFAULT USER LOGIN'
 user = User.create! ({ :first_name => 'Bobby',
   :last_name => 'McGee',
@@ -12,4 +23,19 @@ user = User.create! ({ :first_name => 'Bobby',
   :password => 'please',
   :password_confirmation => 'please'
 })
-puts 'New user created: ' << user.first_name << ' ' << user.last_name
+r = Role.where(:name => 'authorized').first
+user.role = r
+user.save
+puts "Created new user.\n"
+
+puts 'SETTING UP DEFAULT ADMIN USER'
+user = User.create! ({ :first_name => 'Bobby',
+  :last_name => 'McGee',
+  :email => 'admin@test.com',
+  :password => 'please',
+  :password_confirmation => 'please'
+})
+r = Role.where(:name => 'admin').first
+user.role = r
+user.save
+puts "Created admin user.\n"

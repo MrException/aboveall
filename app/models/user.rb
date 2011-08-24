@@ -9,4 +9,32 @@ class User < ActiveRecord::Base
 
   validates_presence_of :first_name, :last_name, :email
   validates_uniqueness_of :email, :case_sensative => false
+
+  belongs_to :role, :readonly => true
+
+  after_initialize :init
+
+  public
+
+  def authorize
+    self.role = Role.where(:name => 'authorized').first
+  end
+
+  def make_admin
+    self.role = Role.where(:name => 'admin').first
+  end
+
+  def admin?
+    self.role.name == "admin"
+  end
+
+  def authorized?
+    self.role.name == "authorized"
+  end
+
+  private
+
+  def init
+    self.role ||= Role.where(:name => 'unauthorized').first
+  end
 end

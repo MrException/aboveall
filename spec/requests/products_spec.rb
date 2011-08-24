@@ -4,7 +4,7 @@ describe "Products" do
   describe "tab navigation" do
     it "can not be seen when not logged in" do
       visit root_path
-      find('#tab-nav').should_not have_content 'Products'
+      find('#tab-nav').should have_no_content 'Products'
     end
 
     it "can be seen when logged in" do
@@ -16,55 +16,75 @@ describe "Products" do
 
   describe "list page" do
     before(:each) do
-      capy_login_user
       (1..5).each do
         FactoryGirl.create(:product)
       end
     end
 
     it "has a list of products" do
+      capy_login_user
       visit root_path
       click_on 'Products'
-      find('#products-list').should have_content('Product Name')
+      find('#products-list').should have_content 'Product Name'
     end
 
-    it "does not have create link when viewed by normal user"
-    it "does have create link when viewed by admin"
+    it "does not have create link when viewed by normal user" do
+      capy_login_user
+      visit root_path
+      click_on 'Products'
+      find('#products-list').should have_no_content 'Create New Product'
+    end
+
+    it "does have create link when viewed by admin" do
+      capy_login_admin
+      visit root_path
+      click_on 'Products'
+      find('#products-list').should have_content 'Create New Product'
+    end
   end
 
   describe "description page" do
     before(:each) do
-      capy_login_user
       (1..5).each do
         FactoryGirl.create(:product)
       end
     end
 
     it "still has the products list" do
+      capy_login_user
       visit root_path
       click_on 'Products'
       find('#products-list').click_on 'Product Name'
-      find('#products-list').should have_content('Product Name')
+      find('#products-list').should have_content 'Product Name'
     end
 
     it "can be navigated to from list page" do
+      capy_login_user
       visit root_path
       click_on 'Products'
       find('#products-list').click_on 'Product Name'
-      find('#product-description').should have_content('Product Name')
+      find('#product-description').should have_content 'Product Name'
     end
 
-    it "does not have edit link when viewed by a normal user"
-    it "does have edit link when viewed by a admin user"
+    it "does not have edit link when viewed by a normal user" do
+      capy_login_user
+      click_on 'Products'
+      find('#products-list').click_on 'Product Name'
+      find('#product-description').should have_no_link 'Edit'
+    end
+
+    it "does have edit link when viewed by a admin user" do
+      capy_login_admin
+      click_on 'Products'
+      find('#products-list').click_on 'Product Name'
+      find('#product-description').should have_link 'Edit'
+    end
   end
 
   describe "creation page" do
     before(:each) do
-      capy_login_user
+      capy_login_admin
     end
-
-    it "should not be accessible by normal users"
-    it "should be accessible by admins"
 
     it "should not create with invalid data" do
       visit root_path
@@ -97,12 +117,9 @@ describe "Products" do
 
   describe "edit page" do
     before(:each) do
-      capy_login_user
+      capy_login_admin
       FactoryGirl.create(:product)
     end
-
-    it "should not be accessible by normal users"
-    it "should be accessible by admins"
 
     it "should not save with invalid data" do
       visit root_path

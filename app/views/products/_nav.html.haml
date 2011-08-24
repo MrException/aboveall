@@ -1,7 +1,9 @@
 #products-list.span-3
   %ul
     - @products.each do |product|
-      %li.product-link= link_to product.title, product
+      %li.product-link
+        = link_to product.title, product
+        = link_to image_tag(product.image.url(:thumb)), product
   - if can? :create, Product
     %li.link
       = link_to 'Create New Product', new_product_path

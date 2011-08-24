@@ -4,6 +4,8 @@
     %p#notice= notice
 
     %p
+      = image_tag @product.image.url(:medium)
+    %p
       %b Title:
       = @product.title
     %p

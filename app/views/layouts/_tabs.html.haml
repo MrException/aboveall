@@ -1,12 +1,11 @@
 %ul#tab-nav
   %li= link_to 'Home', root_path
-  %li= link_to 'About', about_path
 
   - if user_signed_in?
 
-    - if current_user.authorized? || current_user.admin?
+    - if can? :read, Product 
       %li= link_to 'Products', products_path
-    - if current_user.admin?
+    - if can? :index, User
       %li= link_to 'Users', admin_users_path
 
     %li= link_to('Edit account', edit_user_registration_path)

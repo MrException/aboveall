@@ -3,12 +3,14 @@ class Ability
 
   def initialize(user)
 
-    user ||= User.new # guest user (not logged in)
+    # guest user (not logged in)
+    # will have role of 'unauthorized'
+    user ||= User.new
 
     if user.admin?
       can :manage, :all
     elsif user.authorized?
-      can :read, :all
+      can :read, Product
     end
 
     # The first argument to `can` is the action you are giving the user permission to do.

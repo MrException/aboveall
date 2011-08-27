@@ -28,6 +28,10 @@ class User < ActiveRecord::Base
     self.role.name == "admin"
   end
 
+  def unauthorized?
+    self.role.name == "unauthorized"
+  end
+
   def authorized?
     self.role.name == "authorized"
   end

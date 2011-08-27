@@ -25,6 +25,11 @@ describe 'Administrating Users' do
       find('#tab-nav').click_on 'Users'
       # will have SIX users, the admin, and 5 dummy users
       find('#user-list').all('tr.user').count.should == 6
+
+      # make sure the proper links exist in the table
+      find('#user-list').find('tr.user').should have_link 'Edit'
+      #find('#user-list').all('tr.user')[2].should have_link 'Authorize'
+      #find('#user-list').all('tr.user')[0].should have_no_link 'Authorize'
     end
 
   end

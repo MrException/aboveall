@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe ProductsController do
-  login_user
+  login_admin
 
   describe "GET index" do
     it "assigns all products as @products" do

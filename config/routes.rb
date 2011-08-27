@@ -1,7 +1,6 @@
 Aboveall::Application.routes.draw do
   namespace :admin do
-    #get "users/index", :as => 'admin_users'
-    resources :users
+    resources :users, :only => [:index, :edit, :update]
   end
 
   resources :products

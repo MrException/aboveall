@@ -3,7 +3,6 @@ class ProductsController < ApplicationController
   load_and_authorize_resource
 
   # GET /products
-  # GET /products.json
   def index
     respond_to do |format|
       format.html # index.html.erb
@@ -12,8 +11,9 @@ class ProductsController < ApplicationController
   end
 
   # GET /products/1
-  # GET /products/1.json
   def show
+    # I want the products list to
+    # show on this screen as well
     @products = Product.all
 
     respond_to do |format|
@@ -23,7 +23,6 @@ class ProductsController < ApplicationController
   end
 
   # GET /products/new
-  # GET /products/new.json
   def new
     respond_to do |format|
       format.html # new.html.erb
@@ -36,7 +35,6 @@ class ProductsController < ApplicationController
   end
 
   # POST /products
-  # POST /products.json
   def create
     respond_to do |format|
       if @product.save
@@ -50,7 +48,6 @@ class ProductsController < ApplicationController
   end
 
   # PUT /products/1
-  # PUT /products/1.json
   def update
     respond_to do |format|
       if @product.update_attributes(params[:product])
@@ -64,7 +61,6 @@ class ProductsController < ApplicationController
   end
 
   # DELETE /products/1
-  # DELETE /products/1.json
   def destroy
     @product.destroy
 

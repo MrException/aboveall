@@ -34,8 +34,8 @@ describe Admin::UsersController do
 
       it "updates the requested user" do
         user = FactoryGirl.create(:user)
-        # Assuming there are no other products in the database, this
-        # specifies that the Product created on the previous line
+        # Assuming there are no other users in the database, this
+        # specifies that the User created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
         User.any_instance.should_receive(:update_attributes).with({'these' => 'params'})

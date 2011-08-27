@@ -1,6 +1,26 @@
 require 'spec_helper'
 
 describe 'Administrating Users' do
+
+  it 'alows you to edit a user' do
+      capy_login_admin
+      FactoryGirl.create_list(:dummy_user, 5)
+
+      visit root_path
+      find('#tab-nav').click_on 'Users'
+
+      # should have SIX users, the admin, and 5 dummy users
+      find('#user-list').all('tr.user').count.should == 6
+
+      # edit the second user
+      find('#user-list').all('tr.user').second.click_link 'Edit'
+
+      page.select 'admin', :from => 'Role'
+
+      page.click_botton 'Submit'
+  end
+
+  # below this should be moved to a view spec
   describe 'navigation' do
     it 'links should not be visible to normal users' do
       capy_login_user

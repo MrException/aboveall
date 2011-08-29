@@ -14,7 +14,7 @@ gem 'jquery-rails'
 
 gem 'unicorn'
 
-gem 'devise'
+gem 'devise', :git => 'https://github.com/plataformatec/devise.git', :branch => 'master'
 
 # potentially going to use these
 # gem 'launchy'
@@ -22,6 +22,8 @@ gem 'paperclip'
 gem 'shoulda'
 
 gem 'cancan'
+
+gem 'simple_form'
 
 group :development, :test do
   gem 'rspec-rails'

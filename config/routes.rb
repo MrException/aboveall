@@ -1,4 +1,6 @@
 Aboveall::Application.routes.draw do
+  resources :carts
+
   namespace :admin do
     resources :users, :only => [:index, :edit, :update]
   end

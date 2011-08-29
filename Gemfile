@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
-#gem 'rails', '~> 3.1.0.rc'
-gem 'rails', :git => 'https://github.com/rails/rails.git', :branch => '3-1-stable'
+gem 'rails', '~> 3.1.0.rc'
+#gem 'rails', :git => 'https://github.com/rails/rails.git', :branch => '3-1-stable'
 
 gem 'sqlite3'
 
@@ -12,29 +12,24 @@ gem 'haml-rails'
 gem 'sass-rails'
 gem 'jquery-rails'
 
-gem 'unicorn'
-
 gem 'devise', :git => 'https://github.com/plataformatec/devise.git', :branch => 'master'
-
-# potentially going to use these
-# gem 'launchy'
-gem 'paperclip'
-gem 'shoulda'
-
 gem 'cancan'
 
+gem 'paperclip'
 gem 'simple_form'
 
 group :development, :test do
   gem 'rspec-rails'
   gem 'spork', '~> 0.9.0.rc'
-  gem 'simplecov'
-  gem 'pry'
+  # potentially going to use these
+  # gem 'launchy'
+  #gem 'simplecov'
 end
 
 group :test do
   gem 'factory_girl_rails'
   gem 'capybara'
+  gem 'shoulda'
 end
 
 group :development do
@@ -45,4 +40,8 @@ group :development do
 
   gem 'rb-inotify'
   gem 'libnotify'
+end
+
+group :production do
+  gem 'unicorn'
 end

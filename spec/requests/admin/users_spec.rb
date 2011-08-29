@@ -17,24 +17,27 @@ describe 'Administrating Users' do
 
       page.select 'admin', :from => 'Role'
 
-      page.click_botton 'Submit'
+      page.click_button 'Update'
   end
 
-  # below this should be moved to a view spec
-  describe 'navigation' do
-    it 'links should not be visible to normal users' do
+  #
+  # below this should maybe be moved to a view spec
+  #
+  
+  context 'in the root of the application' do
+    it 'does not have links visible to normal users' do
       capy_login_user
       visit root_path
       find('#tab-nav').should have_no_content 'Users'
     end
-    it 'links should be visible to admin users' do
+    it 'does have links visible to admin users' do
       capy_login_admin
       visit root_path
       find('#tab-nav').should have_content 'Users'
     end
   end
 
-  describe 'index' do
+  context 'on the index list' do
     before(:each) do
       capy_login_admin
       FactoryGirl.create_list(:dummy_user, 5)
@@ -52,9 +55,5 @@ describe 'Administrating Users' do
       #find('#user-list').all('tr.user')[0].should have_no_link 'Authorize'
     end
 
-  end
-
-  describe 'authorizing' do
-    it 'should be able to authorize a user'
   end
 end

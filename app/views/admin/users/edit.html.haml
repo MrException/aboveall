@@ -1,0 +1,9 @@
+.content.span-20.last
+  %h2
+    User
+  = simple_form_for(@user, :url => admin_user_path) do |f|
+    = f.input :last_name
+    = f.input :first_name
+    = f.input :email
+    = f.association :role
+    = f.button :submit

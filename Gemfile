@@ -21,6 +21,7 @@ gem 'simple_form'
 group :development, :test do
   gem 'rspec-rails'
   gem 'spork', '~> 0.9.0.rc'
+  gem 'database_cleaner'
   # potentially going to use these
   # gem 'launchy'
   #gem 'simplecov'

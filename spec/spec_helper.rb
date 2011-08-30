@@ -22,6 +22,8 @@ Spork.prefork do
   require 'capybara/rspec'
   require 'capybara/rails'
   require 'paperclip/matchers'
+  require 'database_cleaner'
+  DatabaseCleaner.strategy = :truncation
 
   # for some reason FactoryGirl can not find my
   # factories unless I call this
@@ -55,9 +57,25 @@ Spork.prefork do
     config.extend ControllerMacros, :type => :controller
 
     config.include Paperclip::Shoulda::Matchers
+
+    config.before(:all) do
+      DatabaseCleaner.start
+      DatabaseCleaner.clean
+      FactoryGirl.create(:unauthorized_role)
+      FactoryGirl.create(:authorized_role)
+      FactoryGirl.create(:admin_role)
+    end
+
+    config.after(:all) do
+      DatabaseCleaner.clean
+    end
   end
 end
 
 Spork.each_run do
   # This code will be run each time you run your specs.
+
+  # load the seed data
+  #load "#{Rails.root}/db/seeds.rb"
+
 end

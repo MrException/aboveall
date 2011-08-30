@@ -1,12 +1,23 @@
 require 'spec_helper'
 
 describe User do
+  it { should have_one(:cart) }
+  it { should belong_to(:role) }
+  it "should validate presence of necessary fields" do
+    should validate_presence_of(:first_name)
+    should validate_presence_of(:last_name)
+    should validate_presence_of(:email)
+  end
+  it {
+    FactoryGirl.create(:user)
+    should validate_uniqueness_of(:email)
+  }
+
   describe "New User" do
     it "should have it's role set to unauthorized" do
-      role = FactoryGirl.create(:unauthorized_role)
       u = User.new
       u.role.should_not be_nil
-      u.role.should == role
+      u.should be_unauthorized
     end
   end
 
@@ -28,25 +39,18 @@ describe User do
   end
 
   describe "Roles" do
-
-    before(:each) do
-      @unauthorized_role = FactoryGirl.create(:unauthorized_role)
-      @authorized_role = FactoryGirl.create(:authorized_role)
-      @admin_role = FactoryGirl.create(:admin_role)
-    end
-
     it "can be authorized" do
       u = User.new
-      u.authorize
-      u.role.should == @authorized_role
-      u.authorized?.should == true
+      u.authorize!
+      u.role.should_not be_nil
+      u.should be_authorized
     end
 
     it "can be upgraded to an admin" do
       u = User.new
-      u.make_admin
-      u.role.should == @admin_role
-      u.admin?.should == true
+      u.make_admin!
+      u.role.should_not be_nil
+      u.should be_admin
     end
   end
 end

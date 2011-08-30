@@ -12,19 +12,28 @@ class User < ActiveRecord::Base
 
   belongs_to :role, :readonly => true
 
+  has_one :cart
+
   after_initialize :init
 
   public
 
-  def authorize
-    self.role = Role.where(:name => 'authorized').first
+  def authorize!
+    self.role = Role.authorized
   end
 
-  def make_admin
-    self.role = Role.where(:name => 'admin').first
+  def unauthorize!
+    self.role = Role.unauthorized
+  end
+
+  def make_admin!
+    self.role = Role.admin
   end
 
   def admin?
+    # not sure if this is the proper way?
+    # self.role == Role.admin
+    # I think just testing name equality is faster
     self.role.name == "admin"
   end
 
@@ -39,6 +48,6 @@ class User < ActiveRecord::Base
   private
 
   def init
-    self.role ||= Role.where(:name => 'unauthorized').first
+    self.role ||= Role.unauthorized
   end
 end

@@ -17,16 +17,16 @@ FactoryGirl.define do
     email "user@test.com"
     password "please"
     password_confirmation "please"
-    association :role, :factory => :authorized_role
+    after_build { |user| user.authorize! }
 
     factory :admin do
       email "admin@test.com"
-      association :role, :factory => :admin_role
+      after_build { |user| user.make_admin! }
     end
 
     factory :dummy_user do
       sequence(:email) { |n| "user#{n}@test.com" }
-      association :role, :factory => :unauthorized_role
+      after_build { |user| user.unauthorize! }
     end
   end
 

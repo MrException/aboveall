@@ -1,7 +1,4 @@
-class ProductsController < ApplicationController
-  before_filter :authenticate_user!
-  load_and_authorize_resource
-
+class ProductsController < SecureController
   # GET /products
   def index
     respond_to do |format|

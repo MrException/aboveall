@@ -13,7 +13,7 @@ describe "Carts" do
     it 'it should say there are no items in the cart' do
       capy_login_user
       click_link 'Shopping Cart'
-      page.should have_content 'Empty'
+      page.should have_content 'Your Cart Is Empty'
     end
 
     it 'should allow adding items to cart' do
@@ -24,6 +24,7 @@ describe "Carts" do
       click_button 'Add To Cart'
       click_link 'Shopping Cart'
       find('#cart-list').all('.product').length.should eq 1
+      page.should have_no_content 'Your Cart Is Empty'
     end
   end
 end

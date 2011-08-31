@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Product do
+  it { should have_many(:product_line_items) }
   describe "image attachment" do
     it { should have_attached_file(:image) }
     it { should validate_attachment_presence(:image) }

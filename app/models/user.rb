@@ -49,5 +49,6 @@ class User < ActiveRecord::Base
 
   def init
     self.role ||= Role.unauthorized
+    self.cart ||= Cart.new
   end
 end

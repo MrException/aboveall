@@ -4,6 +4,6 @@
 #nav-links.span-8.last.prepend-10
   %ul
     - if can? :read, Cart
-      %li= link_to_cart
+      %li= link_to 'Shopping Cart', current_user.cart
     = render 'devise/menu/registration_items'
     = render 'devise/menu/login_items'

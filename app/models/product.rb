@@ -7,4 +7,6 @@ class Product < ActiveRecord::Base
   validates_attachment_presence :image
   validates_attachment_content_type :image, :content_type => /image.*/
   validates_attachment_size :image, :less_than => 2.megabyte
+
+  has_many :product_line_items
 end

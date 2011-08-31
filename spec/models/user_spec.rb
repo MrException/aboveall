@@ -19,6 +19,11 @@ describe User do
       u.role.should_not be_nil
       u.should be_unauthorized
     end
+
+    it "should have a cart set up" do
+      u = User.new
+      u.cart.should_not be_nil
+    end
   end
 
   describe "Save User" do

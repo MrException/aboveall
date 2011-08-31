@@ -1,3 +1,11 @@
 .content.span-20.last
   %p#notice= notice
-  %p Your Cart Is Empty
+  - if @cart.product_line_items.any?
+    %table#cart-list
+      %tr
+        %th Name
+      - @cart.product_line_items.each do |line_item|
+        %tr.product
+          %td= line_item.product.title
+  - else
+    %p Your Cart Is Empty

@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '~> 3.1.0.rc'
+gem 'rails', '~> 3.1.0'
 #gem 'rails', :git => 'https://github.com/rails/rails.git', :branch => '3-1-stable'
 
 gem 'sqlite3'
@@ -12,7 +12,8 @@ gem 'haml-rails'
 gem 'sass-rails'
 gem 'jquery-rails'
 
-gem 'devise', :git => 'https://github.com/plataformatec/devise.git', :branch => 'master'
+gem 'devise'
+#gem 'devise', :git => 'https://github.com/plataformatec/devise.git', :branch => 'master'
 gem 'cancan'
 
 gem 'paperclip'

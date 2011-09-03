@@ -21,7 +21,7 @@ describe Product do
   end
 
   it "should validate proper price" do
-    p = Factory.build(:product)
+    p = FactoryGirl.build(:product)
     p.price = -1
     p.should have(1).error_on(:price)
   end

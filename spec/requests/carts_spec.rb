@@ -15,16 +15,18 @@ describe "Carts" do
       click_link 'Shopping Cart'
       page.should have_content 'Your Cart Is Empty'
     end
-
-    it 'should allow adding items to cart' do
-      capy_login_user
-      FactoryGirl.create_list(:product, 5)
-      click_link 'Products'
-      find('.product-link a').click
-      click_button 'Add To Cart'
-      click_link 'Shopping Cart'
-      find('#cart-list').all('.product').length.should eq 1
-      page.should have_no_content 'Your Cart Is Empty'
-    end
   end
+
+  it 'should allow adding items to cart' do
+    capy_login_user
+    FactoryGirl.create_list(:product, 5)
+    click_link 'Products'
+    find('.product-link a').click
+    click_button 'Add To Cart'
+    click_link 'Shopping Cart'
+    find('#cart-list').all('.product').length.should eq 1
+    page.should have_no_content 'Your Cart Is Empty'
+  end
+  
+  it 'should persist over logging out'
 end

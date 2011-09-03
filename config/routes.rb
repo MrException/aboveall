@@ -4,6 +4,7 @@ Aboveall::Application.routes.draw do
 
   resources :products
   resources :carts, :only => [:show]
+  resources :orders, :only => [:new, :create]
   resources :product_line_items, :only => [:create, :update, :destroy]
 
   namespace :admin do

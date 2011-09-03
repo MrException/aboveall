@@ -31,7 +31,7 @@ end
 group :test do
   gem 'factory_girl_rails'
   gem 'capybara'
-  gem 'shoulda'
+  gem 'shoulda', '>= 3.0.0.beta'
 end
 
 group :development do

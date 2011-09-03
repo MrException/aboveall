@@ -1,3 +1,5 @@
+include ActionDispatch::TestProcess
+
 FactoryGirl.define do
   factory :unauthorized_role, :class => Role do
     name "unauthorized"
@@ -35,7 +37,16 @@ FactoryGirl.define do
     description "A nice product description here."
     price 9.99
     unit 'g'
-    image_file_name 'test_image.jpg'
+    image { fixture_file_upload(File.join(Rails.root, 'spec/test_image.jpg'), 'image/jpg')  }
     hidden false
   end
+
+  factory :product_line_item do
+    product
+  end
+
+  factory :cart do
+    product_line_items { |pli| [pli.association(:product_line_item)] }
+  end
+
 end

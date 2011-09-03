@@ -1,0 +1,9 @@
+.content
+  %h1 Order Summary
+  %table#order-list
+    %tr
+      %th Product Name
+    - @order.product_line_items.each do |pli|
+      %tr.product
+        %td pli.product.title
+  %p= button_to 'Place Order', orders_path

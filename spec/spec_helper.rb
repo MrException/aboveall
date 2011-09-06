@@ -66,6 +66,17 @@ Spork.prefork do
       FactoryGirl.create(:admin_role)
     end
 
+    config.before(:each) do
+      # stub out a bunch of paperclip methods
+      # increases speed and reduces annoying log ouput
+      # went from 83s to 62s
+      Product.any_instance.stub(:save_attached_files).and_return(true)
+      Product.any_instance.stub(:delete_attached_files).and_return(true)
+      Product.any_instance.stub(:destroy_attached_files).and_return(true)
+      Product.any_instance.stub(:prepare_for_destroy).and_return(true)
+      Paperclip::Attachment.any_instance.stub(:post_process).and_return(true)
+    end
+
     config.after(:all) do
       DatabaseCleaner.clean
     end
@@ -77,5 +88,6 @@ Spork.each_run do
 
   # load the seed data
   #load "#{Rails.root}/db/seeds.rb"
-
+  RSpec.configure do |config|
+  end
 end

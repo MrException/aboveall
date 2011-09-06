@@ -3,7 +3,7 @@ require 'spec_helper'
 describe ProductLineItemsController do
   login_user
 
-  before(:all) { @product = FactoryGirl.create(:product) }
+  before(:each) { @product = FactoryGirl.create(:product) }
 
   describe "POST create" do
     describe "with valid params" do

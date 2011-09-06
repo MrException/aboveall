@@ -18,10 +18,22 @@ describe OrdersController do
   end
 
   describe 'POST create' do
-    it 'creates a new order' do
-      expect {
+    context 'successful' do
+      before(:each) do
+        cart = FactoryGirl.create(:cart)
+        controller.current_user.cart = cart
+      end
+
+      it 'creates a new order' do
+        expect {
+          post :create
+        }.to change(Order, :count).by(1)
+      end
+
+      it 'empties out the cart' do
         post :create
-      }.to change(Order, :count).by(1)
+        controller.current_user.cart.product_line_items.should be_empty
+      end
     end
   end
 end

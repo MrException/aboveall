@@ -7,6 +7,6 @@ class Order < ActiveRecord::Base
     cart.product_line_items.each do |pli|
       order.product_line_items << pli
     end
-    return order
+    order
   end
 end

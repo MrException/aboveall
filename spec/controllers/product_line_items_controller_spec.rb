@@ -3,18 +3,23 @@ require 'spec_helper'
 describe ProductLineItemsController do
   login_user
 
-  before(:each) { @product = FactoryGirl.create(:product) }
+  let(:product) { mock_model(Product) }
 
   describe "POST create" do
     describe "with valid params" do
+
+      before do
+        Product.stub(:find).and_return product
+      end
+
       it "creates a new line item" do
         expect {
-          post :create, product_id: @product.id
+          post :create, product_id: product.id
         }.to change(ProductLineItem, :count).by 1
       end
 
       it "redirects to the cart" do
-        post :create, product_id: @product.id
+        post :create, product_id: product.id
         response.should redirect_to(controller.current_user.cart)
       end
     end

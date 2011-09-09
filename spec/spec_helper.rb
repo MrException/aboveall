@@ -61,9 +61,18 @@ Spork.prefork do
     config.before(:all) do
       DatabaseCleaner.start
       DatabaseCleaner.clean
+
+      # here we want to create the roles
+      # they are needed for everything due to CanCan authorization
       FactoryGirl.create(:unauthorized_role)
       FactoryGirl.create(:authorized_role)
       FactoryGirl.create(:admin_role)
+
+      # we also want to create some default users, this is so
+      # we don't have to create the users everytime we need them
+      @admin = FactoryGirl.create(:admin)
+      @user = FactoryGirl.create(:user)
+      @dummy = FactoryGirl.create(:dummy_user)
     end
 
     config.before(:each) do

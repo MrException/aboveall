@@ -9,7 +9,6 @@ describe User do
     should validate_presence_of(:email)
   end
   it {
-    FactoryGirl.create(:user)
     should validate_uniqueness_of(:email)
   }
 

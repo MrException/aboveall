@@ -20,7 +20,7 @@ describe "Carts" do
   context 'using cart' do
     before(:each) do
       capy_login_user
-      FactoryGirl.create_list(:product, 5)
+      FactoryGirl.create(:product)
       click_link 'Products'
       find('.product-link a').click
       click_button 'Add To Cart'
@@ -34,11 +34,7 @@ describe "Carts" do
 
     it 'should persist over logging out' do
       click_button 'Logout'
-      visit root_path
-      click_on 'Login'
-      fill_in 'Email', :with => 'user@test.com'
-      fill_in 'Password', :with => 'please'
-      click_on 'Sign in'
+      capy_login_user
       click_link 'Shopping Cart'
       find('#cart-list').all('.product').length.should eq 1
       page.should have_no_content 'Your Cart Is Empty'

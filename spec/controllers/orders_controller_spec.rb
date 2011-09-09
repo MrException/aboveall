@@ -10,7 +10,7 @@ describe OrdersController do
     end
 
     it 'should copy products from the cart' do
-      cart = FactoryGirl.create(:cart)
+      cart = FactoryGirl.build(:cart)
       controller.current_user.cart = cart
       get :new
       assigns(:order).product_line_items.should eq cart.product_line_items
@@ -20,7 +20,7 @@ describe OrdersController do
   describe 'POST create' do
     context 'successful' do
       before(:each) do
-        cart = FactoryGirl.create(:cart)
+        cart = FactoryGirl.build(:cart)
         controller.current_user.cart = cart
       end
 

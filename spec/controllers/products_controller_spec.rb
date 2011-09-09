@@ -3,18 +3,25 @@ require 'spec_helper'
 describe ProductsController do
   login_admin
 
+  let(:product) { mock_model(Product).as_null_object }
+  let(:products) { [product] }
+
+  before do
+    Product.stub(:find).and_return(product)
+      # this seems to be the only way to stub out the :all method with CanCan
+    ActiveRecord::Relation.any_instance.stub(:joins).and_return(products)
+  end
+
   describe "GET index" do
     it "assigns all products as @products" do
-      product = FactoryGirl.create(:product)
       get :index
-      assigns(:products).should eq([product])
+      assigns(:products).should eq products
     end
   end
 
   describe "GET show" do
     it "assigns the requested product as @product" do
-      product = FactoryGirl.create(:product)
-      get :show, :id => product.id.to_s
+      get :show, :id => product.id
       assigns(:product).should eq(product)
     end
   end
@@ -28,8 +35,7 @@ describe ProductsController do
 
   describe "GET edit" do
     it "assigns the requested product as @product" do
-      product = FactoryGirl.create(:product)
-      get :edit, :id => product.id.to_s
+      get :edit, :id => product.id
       assigns(:product).should eq(product)
     end
   end
@@ -39,6 +45,7 @@ describe ProductsController do
 
     describe "with valid params" do
       it "creates a new Product" do
+
         expect {
           post :create, :product => product_params
         }.to change(Product, :count).by(1)
@@ -75,26 +82,19 @@ describe ProductsController do
 
   describe "PUT update" do
     describe "with valid params" do
-      let(:product_params) { FactoryGirl.attributes_for(:product) }
+      let(:product_params) { product.attributes }
 
       it "updates the requested product" do
-        product = FactoryGirl.create(:product)
-        # Assuming there are no other products in the database, this
-        # specifies that the Product created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
-        Product.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
+        product.should_receive(:update_attributes).with({'these' => 'params'})
         put :update, :id => product.id, :product => {'these' => 'params'}
       end
 
       it "assigns the requested product as @product" do
-        product = FactoryGirl.create(:product)
         put :update, :id => product.id, :product => product_params
         assigns(:product).should eq(product)
       end
 
       it "redirects to the product" do
-        product = FactoryGirl.create(:product)
         put :update, :id => product.id, :product => product_params
         response.should redirect_to(product)
       end
@@ -102,18 +102,16 @@ describe ProductsController do
 
     describe "with invalid params" do
       it "assigns the product as @product" do
-        product = FactoryGirl.create(:product)
         # Trigger the behavior that occurs when invalid params are submitted
-        Product.any_instance.stub(:save).and_return(false)
-        put :update, :id => product.id.to_s, :product => {}
+        product.stub(:update_attributes).and_return(false)
+        put :update, :id => product.id, :product => {}
         assigns(:product).should eq(product)
       end
 
       it "re-renders the 'edit' template" do
-        product = FactoryGirl.create(:product)
         # Trigger the behavior that occurs when invalid params are submitted
-        Product.any_instance.stub(:save).and_return(false)
-        put :update, :id => product.id.to_s, :product => {}
+        product.stub(:update_attributes).and_return(false)
+        put :update, :id => product.id, :product => {}
         response.should render_template("edit")
       end
     end
@@ -121,15 +119,12 @@ describe ProductsController do
 
   describe "DELETE destroy" do
     it "destroys the requested product" do
-      product = FactoryGirl.create(:product)
-      expect {
-        delete :destroy, :id => product.id.to_s
-      }.to change(Product, :count).by(-1)
+      product.should_receive(:destroy).and_return true
+      delete :destroy, :id => product.id
     end
 
     it "redirects to the products list" do
-      product = FactoryGirl.create(:product)
-      delete :destroy, :id => product.id.to_s
+      delete :destroy, :id => product.id
       response.should redirect_to(products_url)
     end
   end

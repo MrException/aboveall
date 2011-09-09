@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe 'Orders' do
   it 'should be able to place an order' do
+    FactoryGirl.create(:product)
     capy_login_user
-    FactoryGirl.create_list(:product, 1)
     click_link 'Products'
     find('.product-link a').click
     click_button 'Add To Cart'

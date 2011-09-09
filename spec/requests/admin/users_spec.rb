@@ -4,15 +4,10 @@ describe 'Administrating Users' do
 
   it 'alows you to edit a user' do
       capy_login_admin
-      FactoryGirl.create_list(:dummy_user, 5)
-
       visit root_path
       find('#tab-nav').click_on 'Users'
 
-      # should have SIX users, the admin, and 5 dummy users
-      find('#user-list').all('tr.user').count.should == 6
-
-      # edit the second user
+      # edit the second user, should be a regular user
       find('#user-list').all('tr.user').second.click_link 'Edit'
 
       page.select 'admin', :from => 'Role'
@@ -46,8 +41,8 @@ describe 'Administrating Users' do
     it 'should show a list of users' do
       visit root_path
       find('#tab-nav').click_on 'Users'
-      # will have SIX users, the admin, and 5 dummy users
-      find('#user-list').all('tr.user').count.should == 6
+      # will have EIGHT users, the three created in spec_helper, and 5 dummy users
+      find('#user-list').all('tr.user').count.should == 8
 
       # make sure the proper links exist in the table
       find('#user-list').find('tr.user').should have_link 'Edit'

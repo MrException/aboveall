@@ -12,6 +12,7 @@ class Ability
     elsif user.authorized?
       can :read, Product
       can :read, Cart
+      can :update, Cart
       can :manage, ProductLineItem
       can :manage, Order
     end

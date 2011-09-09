@@ -3,7 +3,7 @@ Aboveall::Application.routes.draw do
   get 'pages/about', :as => 'about'
 
   resources :products
-  resources :carts, :only => [:show]
+  resources :carts, :only => [:show, :update]
   resources :orders, :only => [:new, :create]
   resources :product_line_items, :only => [:create, :update, :destroy]
 

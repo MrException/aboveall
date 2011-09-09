@@ -44,7 +44,13 @@ describe "Carts" do
       page.should have_no_content 'Your Cart Is Empty'
     end
 
-    it 'should allow modifying quantities'
+    it 'should allow modifying quantities' do
+      first('#cart-list .product').fill_in 'Quantity', with: 2
+      click_button 'Update'
+      page.should have_content 'Quantity'
+      first('#cart-list .product').find_field('Quantity').value.should eq "2"
+    end
+
     it 'should allow deleting products'
   end
 end

@@ -1,5 +1,0 @@
-require_recipe 'users'
-require_recipe 'apt::upgrade'
-require_recipe 'build-essential'
-require_recipe 'ruby1.9'
-require_recipe 'passenger'

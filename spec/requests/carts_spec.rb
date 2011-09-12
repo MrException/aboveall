@@ -47,6 +47,10 @@ describe "Carts" do
       first('#cart-list .product').find_field('Quantity').value.should eq "2"
     end
 
-    it 'should allow deleting products'
+    it 'should allow deleting products' do
+      first('#cart-list .product').check 'Delete'
+      click_button 'Update'
+      page.should have_content 'Your Cart Is Empty'
+    end
   end
 end

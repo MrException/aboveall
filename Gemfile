@@ -13,6 +13,8 @@ group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
+  gem 'compass', '~> 0.12.alpha.0'
+  gem 'html5-boilerplate'
 end
 
 gem 'devise'
@@ -21,14 +23,15 @@ gem 'cancan'
 
 gem 'paperclip'
 gem 'simple_form'
-gem 'bourbon'
+# since compass seems to be working now, not using bourbon
+#gem 'bourbon'
 
 group :development, :test do
   gem 'rspec-rails'
   gem 'spork', '~> 0.9.0.rc'
   gem 'database_cleaner'
   # potentially going to use these
-  # gem 'launchy'
+  #gem 'launchy'
   #gem 'simplecov'
 end
 

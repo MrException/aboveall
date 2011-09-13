@@ -1,23 +1,26 @@
-!!! Strict
-%html
+!!! 5
+-# http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither
+-ie_html :class => 'no-js', :lang => 'en' do
   %head
-    %title
-      = @title
-      \- Above All
-    = csrf_meta_tags
-    = render 'layouts/stylesheets'
-  %body
-    .container
-      .header.span-24
+    -# To render a different stylesheet partial inside the head (i.e. for admin layout)
+    -# just copy _stylesheets.html.haml, and point to that partial instead.
+    = render "layouts/head", :stylesheet_partial => "layouts/stylesheets"
+  %body{ :class => "#{controller.controller_name}" }
+    .container#container
+      %header.header.span-24
         = render 'layouts/header'
       .span-24
-        - if ! flash.empty?
-          %section
-            - flash.each do |name, msg|
-              = content_tag :div, msg, :class => "flash #{name}" if msg.is_a?(String)
+        = render "layouts/flashes"
         = render 'layouts/tabs'
         #main.span-24.last
           = yield
+
+      %footer#footer.span-24
+        = render "layouts/footer"
+
       - if Rails.env.development?
         .span-24
           = debug(params)
+
+    -# Javascript at the bottom for fast page loading
+    = render "layouts/javascripts"

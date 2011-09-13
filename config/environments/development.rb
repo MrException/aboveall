@@ -22,6 +22,9 @@ Aboveall::Application.configure do
   # Do not compress assets
   config.assets.compress = false
 
+  # Expands the lines which load the assets
+  config.assets.debug = true
+
   ### ActionMailer config
   # Don't care if the mailer can't send
   #config.action_mailer.raise_delivery_errors = false

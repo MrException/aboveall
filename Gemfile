@@ -6,11 +6,14 @@ gem 'rails', '~> 3.1.0'
 gem 'sqlite3'
 
 # Asset template engines
-gem 'coffee-script'
-gem 'uglifier'
 gem 'haml-rails'
-gem 'sass-rails'
 gem 'jquery-rails'
+
+group :assets do
+  gem 'sass-rails'
+  gem 'coffee-rails'
+  gem 'uglifier'
+end
 
 gem 'devise'
 #gem 'devise', :git => 'https://github.com/plataformatec/devise.git', :branch => 'master'
@@ -18,6 +21,7 @@ gem 'cancan'
 
 gem 'paperclip'
 gem 'simple_form'
+gem 'bourbon'
 
 group :development, :test do
   gem 'rspec-rails'

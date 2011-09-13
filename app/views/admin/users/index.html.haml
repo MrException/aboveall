@@ -1,17 +1,16 @@
-.content
-  %h1 User List
+%h1 User List
 
-  %table#user-list
-    %tr
-      %th Last Name
-      %th First Name
-      %th Email
-      %th Role
-      %th
-    - @users.each do |user| 
-      %tr.user
-        %td= user.last_name
-        %td= user.first_name
-        %td= user.email
-        %td= user.role.name
-        %td= link_to 'Edit', edit_admin_user_path(user)
+%table#user-list
+  %tr
+    %th Last Name
+    %th First Name
+    %th Email
+    %th Role
+    %th
+  - @users.each do |user| 
+    %tr.user
+      %td= user.last_name
+      %td= user.first_name
+      %td= user.email
+      %td= user.role.name
+      %td= link_to 'Edit', edit_admin_user_path(user)

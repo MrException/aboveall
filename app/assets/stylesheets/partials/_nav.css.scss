@@ -1,30 +1,37 @@
 #nav-links {
   text-align: right;
 
+  ul {
+    /*this is needed so that the links are on the same line*/
+    padding: 0px;
+    margin: 0px;
+  }
+
   li {
     list-style-type: none;
     display: inline-block;
   }
 
   a {
+    @include border-radius(10px);
+
     color: black;
     text-decoration: none;
     border: 2px solid black;
-    @include border-radius(10px);
     padding: 3px;
   }
 
   input {
+    @include border-radius(10px);
+
     background: white;
     color: black;
     text-decoration: none;
     border: 2px solid black;
-    @include border-radius(10px);
     padding: 3px;
 
-    /* Don't particularily like specifying these so fine grained. */
+    /* Don't particularily like specifying this so fine grained. */
     /* But since it's only for ONE button, probably ok */
-    font-size: 12px;
-    height: 25px;
+    height: 27px;
   }
 }

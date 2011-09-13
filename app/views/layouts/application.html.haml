@@ -7,20 +7,15 @@
     = render "layouts/head", :stylesheet_partial => "layouts/stylesheets"
   %body{ :class => "#{controller.controller_name}" }
     .container#container
-      %header.header.span-24
+      %header#header
         = render 'layouts/header'
-      .span-24
-        = render "layouts/flashes"
+      #navigation
         = render 'layouts/tabs'
-        #main.span-24.last
-          = yield
-
-      %footer#footer.span-24
+      #content
+        = render "layouts/flashes"
+        = yield
+      %footer#footer
         = render "layouts/footer"
-
-      - if Rails.env.development?
-        .span-24
-          = debug(params)
 
     -# Javascript at the bottom for fast page loading
     = render "layouts/javascripts"

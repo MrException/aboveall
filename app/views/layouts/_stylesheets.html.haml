@@ -1,5 +1,7 @@
 -# CSS: implied media="all"
 = stylesheet_link_tag 'application', :media => 'all'
+/[if lt IE 8]
+  = stylesheet_link_tag 'ie.css', :media => 'screen, projection'
 
 -# Append your own using content_for :stylesheets
 = yield :stylesheets

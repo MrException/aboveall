@@ -7,6 +7,12 @@
 // Then we'll import the compass extension
 @import "html5-boilerplate";
 
+// Import all the default blueprint modules so that we can access their mixins.
+@import "blueprint";
+
+// Import the non-default scaffolding module.
+@import "blueprint/scaffolding";
+
 // Now, you can simply include everything
 // (except media) by uncommeting this line
 //@include html5-boilerplate;
@@ -14,6 +20,9 @@
 // Or, you can pick and choose only the sections
 // you want by using the these includes
 @include html5-boilerplate-reset;
+
+@import "normalize";
+
 @include html5-boilerplate-fonts;
 @include html5-boilerplate-styles;
 @include html5-boilerplate-helpers;
@@ -30,38 +39,61 @@
 @import "partials/tabs";
 @import "partials/nav";
 
-@import "products";
+// To generate css equivalent to the blueprint css but with your
+// configuration applied, uncomment:
+// @include blueprint;
 
+// Page layout can be done using mixins applied to your semantic classes and IDs:
 body {
   background: white;
-  font-family: Arial;
-}
 
-.header {
-  padding-top: 20px;
+  @include blueprint-typography(true);
+  @include blueprint-utilities;
+  @include blueprint-debug;
+  @include blueprint-interaction;
+  // Remove the scaffolding when you're ready to start doing visual design.
+  // Or leave it in if you're happy with how blueprint looks out-of-the-box
+  @include blueprint-scaffolding;
 
-  img {
-    /*@include round-corners(10px);*/
-    /*padding: 1em;*/
-    /*background: $blue;*/
+  #container {
+    @include container;
+  }
+
+  #header {
+    @include column($blueprint-grid-columns);
+
+    padding-top: 20px;
+  }
+
+  #content {
+    @include column($blueprint-grid-columns);
+    background: white;
+    border: 2px solid black;
+    margin: 0;
+    padding: 24px;
+
+    .flash {
+      margin-top: 10px;
+    }
+  }
+
+  #footer, #navigation {
+    @include column($blueprint-grid-columns);
+  }
+
+  form {
+    @include blueprint-form;
+    // You'll probably want to remove the scaffolding once you start styling your site.
+    @include blueprint-scaffolding;
   }
 }
 
-.flash {
-  margin-top: 10px;
-}
+// Import page specific files here
+@import "products";
 
-#main {
-  /*@include round-corners(10px);*/
-  padding: 2em;
-  background: white;
-  border: 2px solid black;
-  margin: 0;
-  padding: 0;
-}
-
-.content {
-  padding: 24px;
+// Print based stuff
+body {
+  @include blueprint-print(true);
 }
 
 // Media should come last

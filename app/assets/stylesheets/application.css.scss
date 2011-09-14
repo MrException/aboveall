@@ -8,6 +8,9 @@
 @import 'compass/typography/lists/horizontal-list';
 @import 'compass/layout';
 @import 'compass/utilities/general/min';
+@import 'compass/typography/vertical_rhythm';
+@import 'compass/utilities/tables/scaffolding';
+@import 'compass/utilities/tables/alternating-rows-and-columns';
 
 // Here's where we define some default constants
 @import 'partials/base';
@@ -48,6 +51,7 @@
 // configuration applied, uncomment:
 // @include blueprint;
 
+@include establish-baseline;
 @include sticky-footer(30px, "#content", "#content_footer", "#footer");
 
 body {
@@ -60,35 +64,48 @@ body {
   // Or leave it in if you're happy with how blueprint looks out-of-the-box
   @include blueprint-scaffolding;
 
+  p { @include leader; }
+
+  h1, h2, h3, h4, h5, h6 {
+    @include adjust-font-size-to(30px);
+    font-family: georgia;
+    border-bottom: 2px solid $border-color;
+  }
+
   #container {
     @include container;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 1px solid $border-color;
   }
 
   #header {
     @include column($blueprint-grid-columns, true);
     background: $header-background-color;
-    padding-top: 20px;
-    h1 {
-      color: $font-color;
-      font-size: 80px;
-      text-align: center;
-      font-family: georgia;
-    }
+    @include adjust-font-size-to(90px);
+    text-align: center;
+    font-family: georgia serif;
+    padding-top: $base-line-height;
+    padding-bottom: $base-line-height;
+    color: $font-color;
   }
 
   #content {
     @include column($blueprint-grid-columns, true);
     background: $content-color;
-    /*border: 2px solid black;*/
-    padding: 24px;
+    padding: $base-line-height;
+    width: $blueprint-container-size - (2 * $base-line-height);
     @include min-height(400px);
+
+    table {
+      @include table-scaffolding;
+      @include alternating-rows-and-columns(blue, red, #000000);
+    }
   }
 
   #footer {
     @include column($blueprint-grid-columns, true);
     background: $menu-background;
-    margin-bottom: 5px;
-    padding: 5px;
     border-top: 1px solid $border-color;
     border-bottom: 1px solid $border-color;
     text-align: center;

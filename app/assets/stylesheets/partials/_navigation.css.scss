@@ -9,13 +9,26 @@
 
   ul {
     padding: 0;
-    padding-left: 50px;
     margin: 0;
   }
   li {
-    text-align: center;
     padding: 0;
     margin: 0;
+      text-align: center;
+  }
+  ul.left {
+    float: left;
+    padding-left: 10px;
+    li {
+      margin-right: 10px;
+    }
+  }
+  ul.right {
+    float: right;
+    padding-right: 10px;
+    li {
+      margin-left: 10px;
+    }
   }
   a {
     text-decoration: none;

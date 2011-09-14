@@ -1,14 +1,14 @@
-%ul.navigation
-  %li.left= link_to 'Home', root_path
-
+%ul.navigation.left
+  %li= link_to 'Home', root_path
   - if user_signed_in?
-
     - if can? :read, Product 
-      %li.left= link_to 'Products', products_path
+      %li= link_to 'Products', products_path
     - if can? :index, User
-      %li.left= link_to 'Users', admin_users_path
+      %li= link_to 'Users', admin_users_path
 
+%ul.navigation.right
+  - if user_signed_in?
     - if can? :read, Cart
-      %li.right= link_to 'Shopping Cart', current_user.cart
+      %li= link_to 'Shopping Cart', current_user.cart
   = render 'devise/menu/registration_items'
   = render 'devise/menu/login_items'

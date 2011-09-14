@@ -1,4 +1,3 @@
-@import "compass/css3";
 
 //-----------------------------------------------
 // The following html5-boilerplate styles should
@@ -15,6 +14,7 @@ body, select, input, textarea {
 h1, h2, h3, h4, h5, h6 {
   // Bold might not be the best choice if you are
   // embedding a @font-face that's already bold
+  color: $header-color;
   font-weight: bold;
 }
 

@@ -1,9 +1,3 @@
-.span-6
-  - imgprops = { :alt => 'Above All', :width => '400', :height => '160' }
-  = link_to image_tag('logo.png', imgprops), root_path
-#nav-links.span-8.last.prepend-10
-  %ul
-    - if can? :read, Cart
-      %li= link_to 'Shopping Cart', current_user.cart
-    = render 'devise/menu/registration_items'
-    = render 'devise/menu/login_items'
+-#- imgprops = { :alt => 'Above All', :width => '400', :height => '160' }
+-#= link_to image_tag('logo.png', imgprops), root_path
+%h1 Above All Compassion

@@ -1,53 +1,58 @@
+////////////////////////////////////
+// ORDER IF IMPORTS IS IMPORTANT! //
+////////////////////////////////////
+
 // compass mixins here at top
-@import "compass/css3/border-radius";
+@import 'compass/css3';
+@import 'compass/css3/border-radius';
+@import 'compass/typography/lists/horizontal-list';
+@import 'compass/layout';
+@import 'compass/utilities/general/min';
 
 // Here's where we define some default constants
-@import "partials/base";
+@import 'partials/base';
 
 // Then we'll import the compass extension
-@import "html5-boilerplate";
+@import 'html5-boilerplate';
 
 // Import all the default blueprint modules so that we can access their mixins.
-@import "blueprint";
+@import 'blueprint';
 
 // Import the non-default scaffolding module.
-@import "blueprint/scaffolding";
+@import 'blueprint/scaffolding';
+
+// I really like the idea of normalize, but it seems to be somehow mangling my
+// styles define below. I am not sure why it takes precedent over things in
+// html5-boilerplate-fonts and what not, but it is!
+@import 'normalize';
+@import 'partials/overrides';
 
 // Now, you can simply include everything
 // (except media) by uncommeting this line
 //@include html5-boilerplate;
-
 // Or, you can pick and choose only the sections
 // you want by using the these includes
-@include html5-boilerplate-reset;
-
-@import "normalize";
-
-@include html5-boilerplate-fonts;
-@include html5-boilerplate-styles;
-@include html5-boilerplate-helpers;
-
-// Or, you can import the "overrides" partial if
-// you want more control over individual mixins
-//@import "partials/overrides";
+// This are all included separately in overrides
+//@include html5-boilerplate-reset;
+//@include html5-boilerplate-fonts;
+//@include html5-boilerplate-styles;
+//@include html5-boilerplate-helpers;
 
 // Finally, put your own styles in these partials
 // and add more as needed (i.e. forms, tables, nav)
-@import "partials/fonts";
-@import "partials/page";
-@import "partials/grid";
-@import "partials/tabs";
-@import "partials/nav";
+@import 'partials/fonts';
+@import 'partials/page';
+@import 'partials/navigation';
 
 // To generate css equivalent to the blueprint css but with your
 // configuration applied, uncomment:
 // @include blueprint;
 
-// Page layout can be done using mixins applied to your semantic classes and IDs:
-body {
-  background: white;
+@include sticky-footer(30px, "#content", "#content_footer", "#footer");
 
-  @include blueprint-typography(true);
+body {
+  background: $background-color;
+
   @include blueprint-utilities;
   @include blueprint-debug;
   @include blueprint-interaction;
@@ -60,25 +65,33 @@ body {
   }
 
   #header {
-    @include column($blueprint-grid-columns);
-
+    @include column($blueprint-grid-columns, true);
+    background: $header-background-color;
     padding-top: 20px;
-  }
-
-  #content {
-    @include column($blueprint-grid-columns);
-    background: white;
-    border: 2px solid black;
-    margin: 0;
-    padding: 24px;
-
-    .flash {
-      margin-top: 10px;
+    h1 {
+      color: $font-color;
+      font-size: 80px;
+      text-align: center;
+      font-family: georgia;
     }
   }
 
-  #footer, #navigation {
-    @include column($blueprint-grid-columns);
+  #content {
+    @include column($blueprint-grid-columns, true);
+    background: $content-color;
+    /*border: 2px solid black;*/
+    padding: 24px;
+    @include min-height(400px);
+  }
+
+  #footer {
+    @include column($blueprint-grid-columns, true);
+    background: $menu-background;
+    margin-bottom: 5px;
+    padding: 5px;
+    border-top: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
+    text-align: center;
   }
 
   form {
@@ -89,12 +102,12 @@ body {
 }
 
 // Import page specific files here
-@import "products";
+@import 'products';
 
 // Print based stuff
 body {
-  @include blueprint-print(true);
+  /*@include blueprint-print(true);*/
 }
 
 // Media should come last
-@import "partials/media";
+@import 'partials/media';

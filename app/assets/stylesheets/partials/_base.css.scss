@@ -6,9 +6,20 @@ $base-font-size: 16px;  // default font-size for YUI fonts
 
 $base-line-height: 1.5;  // default line-height for YUI fonts
 
-$font-color: #444;
+$background-color: #E0E0E0;
+$header-background-color: #CAC5CC;
+$content-color: white;
 
-$link-color: #607890;
+$header-color: #503064;
+
+$border-color: #97989E;
+
+$menu-selected: #313767;
+$menu-background: #CACACF;
+
+$font-color: #5E5C5F;
+
+$link-color: $font-color;
 
 $link-hover-color: #036;
 

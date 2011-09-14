@@ -1,0 +1,51 @@
+#navigation {
+  @include column($blueprint-grid-columns, true);
+  @include horizontal-list;
+  background: $menu-background;
+  //margin-top: 1px;
+  //margin-bottom: 1px;
+  border-top: 1px solid $border-color;
+  border-bottom: 1px solid $border-color;
+
+  ul {
+    padding: 0;
+    padding-left: 50px;
+    margin: 0;
+  }
+  li {
+    text-align: center;
+    padding: 0;
+    margin: 0;
+  }
+  a {
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  a:hover {
+    background: $menu-selected;
+    color: $menu-background;
+  }
+
+  input {
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    background: $menu-background;
+    margin: 0;
+    /*padding-top: 5px;*/
+    /*padding-bottom: 5px;*/
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  input:hover {
+    background: $menu-selected;
+    color: $menu-background;
+  }
+}

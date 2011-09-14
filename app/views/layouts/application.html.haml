@@ -10,12 +10,17 @@
       %header#header
         = render 'layouts/header'
       #navigation
-        = render 'layouts/tabs'
+        = render 'layouts/navigation'
       #content
-        = render "layouts/flashes"
+        = render 'layouts/flashes'
         = yield
+        #content_footer
       %footer#footer
-        = render "layouts/footer"
+        = render 'layouts/footer'
+      - if Rails.env.development?
+        #debug
+          = debug(params)
+
 
     -# Javascript at the bottom for fast page loading
-    = render "layouts/javascripts"
+    = render 'layouts/javascripts'

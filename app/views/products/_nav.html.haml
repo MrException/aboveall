@@ -6,6 +6,6 @@
   - @products.each do |product|
     .product-small
       .image
-        = link_to image_tag(product.image.url(:thumb), size: "100x100"), product
+        = link_to image_tag(product.image.url(:thumb), size: "100x100", alt: "Product Image"), product, :class => 'product-link'
       .title
         = product.title

@@ -4,10 +4,10 @@ describe "Carts" do
   context 'just logged in' do
     it 'should only be visible to authorized users' do
       capy_login_new
-      find('#nav-links').should have_no_content 'Shopping Cart'
+      find('#navigation').should have_no_content 'Shopping Cart'
       click_button 'Logout'
       capy_login_admin
-      find('#nav-links').should have_content 'Shopping Cart'
+      find('#navigation').should have_content 'Shopping Cart'
     end
 
     it 'it should say there are no items in the cart' do
@@ -22,7 +22,7 @@ describe "Carts" do
       capy_login_user
       FactoryGirl.create(:product)
       click_link 'Products'
-      find('.product-link a').click
+      find('#products-list').click_on 'Product Image'
       click_button 'Add To Cart'
       click_link 'Shopping Cart'
     end

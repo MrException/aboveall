@@ -5,7 +5,7 @@ describe 'Administrating Users' do
   it 'alows you to edit a user' do
       capy_login_admin
       visit root_path
-      find('#tab-nav').click_on 'Users'
+      find('#navigation').click_on 'Users'
 
       # edit the second user, should be a regular user
       find('#user-list').all('tr.user').second.click_link 'Edit'
@@ -23,12 +23,12 @@ describe 'Administrating Users' do
     it 'does not have links visible to normal users' do
       capy_login_user
       visit root_path
-      find('#tab-nav').should have_no_content 'Users'
+      find('#navigation').should have_no_content 'Users'
     end
     it 'does have links visible to admin users' do
       capy_login_admin
       visit root_path
-      find('#tab-nav').should have_content 'Users'
+      find('#navigation').should have_content 'Users'
     end
   end
 
@@ -40,7 +40,7 @@ describe 'Administrating Users' do
 
     it 'should show a list of users' do
       visit root_path
-      find('#tab-nav').click_on 'Users'
+      find('#navigation').click_on 'Users'
       # will have EIGHT users, the three created in spec_helper, and 5 dummy users
       find('#user-list').all('tr.user').count.should == 8
 

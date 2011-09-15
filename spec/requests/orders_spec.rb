@@ -5,7 +5,7 @@ describe 'Orders' do
     FactoryGirl.create(:product)
     capy_login_user
     click_link 'Products'
-    find('.product-link a').click
+    find('#products-list').click_on 'Product Image'
     click_button 'Add To Cart'
     click_link 'Shopping Cart'
     click_button 'Checkout'

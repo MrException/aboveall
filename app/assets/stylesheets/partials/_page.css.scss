@@ -14,12 +14,32 @@ body, select, input, textarea {
 h1, h2, h3, h4, h5, h6 {
   // Bold might not be the best choice if you are
   // embedding a @font-face that's already bold
+  font-family: georgia;
+  border-bottom: 2px solid $border-color;
   color: $header-color;
   font-weight: bold;
 }
 
-a, a:active, a:visited { color: $link-color; }
-a:hover { color: $link-hover-color; }
+h1 {
+  @include adjust-font-size-to(35px);
+}
+
+h2 {
+  @include adjust-font-size-to(25px);
+  @include leader;
+}
+
+p { @include leader; }
+
+a, a:active, a:visited {
+  color: $link-color;
+  text-decoration: none;
+}
+
+a:hover {
+  color: $link-hover-color;
+  text-decoration: underline;
+}
 
 strong, th {
   font-weight: bold;

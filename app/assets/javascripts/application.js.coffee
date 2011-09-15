@@ -7,3 +7,22 @@
 #= require jquery
 #= require jquery_ujs
 #= require_tree .
+
+$(document).ready ->
+  $('.product-small').click ->
+    window.location=$(this).find('a').attr('href')
+    return false
+
+  button_replace("#navigation form", "#logout", "Logout")
+
+button_replace = (form, button, text) ->
+  link = "<a href=\""
+  link += "javascript:$('"
+  link += form
+  link += "').find('"
+  link += button
+  link += "').click();\">"
+  link += text
+  link += "</a>"
+  $(form).find(button).after(link)
+  $(form).find(button).css({display: "none"})

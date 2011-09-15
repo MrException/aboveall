@@ -1,21 +1,38 @@
 #products-list {
-  border-right: 2px solid black;
-  padding: 0px;
-  margin: 0;
-  height: 100%;
+  @include column(6);
+  @include leader;
+  @include trailer;
 
-  ul {
-    padding: 0px;
-    margin: 0;
+  text-align: center;
+
+  .product-small {
+    border: 2px dotted $border-color;
+    @include border-radius;
+    padding: 5px;
+    margin: 5px;
+
+    img {
+      border: 2px solid $border-color;
+    }
+
+    &:hover {
+      background: $menu-background;
+      cursor: pointer;
+      cursor: hand;
+    }
   }
+}
 
-  li {
+#product-description {
+  @include column(14,true);
+  @include trailer;
+
+  #image {
+    float: left;
     padding: 10px;
-    list-style-type: none;
-    border-bottom: 2px solid black;
   }
 
-  li.link {
-    border-bottom: 0px;
+  #button {
+    float: right;
   }
 }

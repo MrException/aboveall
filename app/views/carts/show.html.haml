@@ -1,21 +1,24 @@
 %p#notice= notice
+%h1 Shopping Cart
 - if @cart.product_line_items.any?
   = form_for @cart do |c|
     %table#cart-list
-      %tr
-        %th Name
-        %th
-        %th
-      - @cart.product_line_items.each do |pli|
-        %tr.product
-          = c.fields_for :product_line_items, pli do |pli_fields|
-            %td= pli.product.title
-            %td.field
-              =pli_fields.label :quantity, "Quantity"
-              =pli_fields.text_field :quantity
-            %td.field
-              =pli_fields.label :_destroy, "Delete?"
-              =pli_fields.check_box :_destroy
+      %thead
+        %tr
+          %th Name
+          %th Quantity
+          %th Delete?
+      %tbody
+        - @cart.product_line_items.each_with_index do |pli,i|
+          %tr.product{:class => i % 2 == 0 ? 'odd' : 'even'}
+            = c.fields_for :product_line_items, pli do |pli_fields|
+              %td= pli.product.title
+              %td.field
+                =pli_fields.label :quantity, "Quantity"
+                =pli_fields.text_field :quantity
+              %td.field
+                =pli_fields.label :_destroy, "Delete?"
+                =pli_fields.check_box :_destroy
     = submit_tag 'Update'
   %p= button_to 'Checkout', new_order_path, :method => :get
 - else

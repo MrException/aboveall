@@ -5,10 +5,11 @@
 // compass mixins here at top
 @import 'compass/css3';
 @import 'compass/css3/border-radius';
+@import 'compass/typography/vertical_rhythm';
 @import 'compass/typography/lists/horizontal-list';
 @import 'compass/layout';
+@import 'compass/layout/stretching';
 @import 'compass/utilities/general/min';
-@import 'compass/typography/vertical_rhythm';
 @import 'compass/utilities/tables/scaffolding';
 @import 'compass/utilities/tables/alternating-rows-and-columns';
 
@@ -64,19 +65,10 @@ body {
   // Or leave it in if you're happy with how blueprint looks out-of-the-box
   @include blueprint-scaffolding;
 
-  p { @include leader; }
-
-  h1, h2, h3, h4, h5, h6 {
-    @include adjust-font-size-to(30px);
-    font-family: georgia;
-    border-bottom: 2px solid $border-color;
-  }
-
   #container {
     @include container;
-    margin-top: 20px;
-    margin-bottom: 20px;
     border: 1px solid $border-color;
+    @include leader;
   }
 
   #header {
@@ -87,19 +79,33 @@ body {
     font-family: georgia serif;
     padding-top: $base-line-height;
     padding-bottom: $base-line-height;
-    color: $font-color;
+
+    a { color: $font-color; }
   }
 
   #content {
+
     @include column($blueprint-grid-columns, true);
     background: $content-color;
     padding: $base-line-height;
-    width: $blueprint-container-size - (2 * $base-line-height);
+    width: $content-width;
     @include min-height(400px);
 
     table {
+      @include leader;
+      @include trailer;
       @include table-scaffolding;
-      @include alternating-rows-and-columns(blue, red, #000000);
+      @include alternating-rows-and-columns(#E7E0E2, white, #000000);
+      width: $content-width;
+      thead { border-bottom: 1px solid $border-color; }
+      th { text-align: left; }
+    }
+  }
+
+  #content.carts {
+    // Very specific selector, just needed for the 'Update' button on the cart
+    form.edit_cart input[type="submit"] {
+      float: right;
     }
   }
 
@@ -112,9 +118,7 @@ body {
   }
 
   form {
-    @include blueprint-form;
-    // You'll probably want to remove the scaffolding once you start styling your site.
-    @include blueprint-scaffolding;
+    // @include blueprint-form;
   }
 }
 

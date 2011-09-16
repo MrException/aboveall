@@ -18,18 +18,26 @@ describe "Carts" do
   end
 
   context 'using cart' do
-    before(:each) do
-      capy_login_user
-      FactoryGirl.create(:product)
+    let(:addproduct) do
       click_link 'Products'
       find('#products-list').click_on 'Product Image'
       click_button 'Add To Cart'
-      click_link 'Shopping Cart'
+    end
+
+    before(:each) do
+      capy_login_user
+      FactoryGirl.create(:product)
+      addproduct
     end
 
     it 'should allow adding items to cart' do
       find('#cart-list').all('.product').length.should eq 1
       page.should have_no_content 'Your Cart Is Empty'
+    end
+
+    it 'increases quantity when adding item twice' do
+      addproduct
+      find('#cart-list').all('.product').length.should eq 1
     end
 
     it 'should persist over logging out' do

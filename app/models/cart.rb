@@ -6,4 +6,13 @@ class Cart < ActiveRecord::Base
   def empty
     product_line_items.delete_all
   end
+
+  def pli_from_product(product)
+    product_line_items.each do |pli|
+      if pli.product == product
+        return pli
+      end
+    end
+    nil
+  end
 end

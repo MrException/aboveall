@@ -7,14 +7,21 @@ class ProductLineItemsController < SecureController
       return
     end
 
-    @line_item = ProductLineItem.new ({
-      product: @product,
-      cart: current_user.cart
-    })
-    if @line_item.save
+    @pli = current_user.cart.pli_from_product @product
+    if @pli
+      @pli.quantity = @pli.quantity + 1
+      @pli.save
       redirect_to current_user.cart
     else
-      redirect_to root_path, alert: "Unable to add item to your cart."
+      @line_item = ProductLineItem.new ({
+        product: @product,
+        cart: current_user.cart
+      })
+      if @line_item.save
+        redirect_to current_user.cart
+      else
+        redirect_to root_path, alert: "Unable to add item to your cart."
+      end
     end
   end
 

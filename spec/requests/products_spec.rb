@@ -16,9 +16,7 @@ describe "Products" do
 
   describe "list page" do
     before(:each) do
-      (1..5).each do
-        FactoryGirl.create(:product)
-      end
+      FactoryGirl.create(:product)
     end
 
     it "has a list of products" do
@@ -45,9 +43,7 @@ describe "Products" do
 
   describe "description page" do
     before(:each) do
-      (1..5).each do
-        FactoryGirl.create(:product)
-      end
+      FactoryGirl.create(:product)
     end
 
     it "still has the products list" do
@@ -56,14 +52,6 @@ describe "Products" do
       click_on 'Products'
       find('#products-list').click_on 'Product Image'
       find('#products-list').should have_content 'Product Name'
-    end
-
-    it "can be navigated to from list page" do
-      capy_login_user
-      visit root_path
-      click_on 'Products'
-      find('#products-list').click_on 'Product Image'
-      find('#product-description').should have_content 'Product Name'
     end
 
     it "does not have edit link when viewed by a normal user" do

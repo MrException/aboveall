@@ -16,9 +16,9 @@ FactoryGirl.define do
   factory :user do
     first_name "Bob"
     last_name "McGee"
-    email "user@test.com"
     password "please"
     password_confirmation "please"
+    sequence(:email) { |n| "user#{n}@test.com" }
     after_build { |user| user.authorize! }
 
     factory :admin do
@@ -27,7 +27,7 @@ FactoryGirl.define do
     end
 
     factory :dummy_user do
-      sequence(:email) { |n| "user#{n}@test.com" }
+      sequence(:email) { |n| "dummy-user#{n}@test.com" }
       after_build { |user| user.unauthorize! }
     end
   end
@@ -48,6 +48,12 @@ FactoryGirl.define do
 
   factory :cart do
     product_line_items { |pli| [pli.association(:product_line_item)] }
+    user
+  end
+
+  factory :order do
+    product_line_items { |pli| [pli.association(:product_line_item)] }
+    user
   end
 
 end

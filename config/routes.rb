@@ -9,7 +9,7 @@ Aboveall::Application.routes.draw do
 
   namespace :admin do
     resources :users, :only => [:index, :edit, :update]
-    # resources :orders
+    resources :orders, :only => [:index, :show, :edit, :update]
   end
 
   devise_for :users

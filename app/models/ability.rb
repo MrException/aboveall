@@ -14,7 +14,7 @@ class Ability
       can :read, Cart
       can :update, Cart
       can :manage, ProductLineItem
-      can :manage, Order
+      can :create, Order
     end
   end
 end

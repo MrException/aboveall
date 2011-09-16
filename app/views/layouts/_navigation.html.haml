@@ -5,6 +5,8 @@
       %li= link_to 'Products', products_path
     - if can? :index, User
       %li= link_to 'Users', admin_users_path
+    - if can? :index, Order
+      %li= link_to 'Orders', admin_orders_path
 
 %ul.navigation.right
   - if user_signed_in?

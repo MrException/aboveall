@@ -20,6 +20,8 @@ Aboveall::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
 
+  config.assets.precompile += ['ie.css', 'modernizr.js', 'respond.js']
+
   # Specify the default JavaScript compressor
   config.assets.js_compressor  = :uglifier
 

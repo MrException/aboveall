@@ -9,12 +9,13 @@ gem 'sqlite3'
 gem 'haml-rails'
 gem 'jquery-rails'
 
+gem 'sass-rails'
+gem 'compass', '~> 0.12.alpha.0'
+gem 'html5-boilerplate'
+
 group :assets do
-  gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
-  gem 'compass', '~> 0.12.alpha.0'
-  gem 'html5-boilerplate'
 end
 
 gem 'devise'

@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(:version => 20110908212737) do
   create_table "products", :force => true do |t|
     t.string   "title"
     t.string   "description"
-    t.decimal  "price"
+    t.decimal  "price",              :precision => 10, :scale => 0
     t.string   "unit"
     t.boolean  "hidden"
     t.datetime "created_at"

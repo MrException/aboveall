@@ -7,6 +7,19 @@ class Order < ActiveRecord::Base
     cart.product_line_items.each do |pli|
       order.product_line_items << pli
     end
+    order.user = cart.user
     order
+  end
+
+  def empty?
+    product_line_items.empty?
+  end
+
+  def total
+    total = 0.00
+    product_line_items.each do |pli|
+      total = total + (pli.product.price * pli.quantity)
+    end
+    total
   end
 end

@@ -24,21 +24,21 @@ guard 'spork', :cucumber_env => { 'RAILS_ENV' => 'test' }, :rspec_env => { 'RAIL
   watch('spec/factories.rb')
 end
 
-guard 'rspec', :cli => '--drb', :all_after_pass => false do
-  watch(%r{^spec/.+_spec\.rb$})
-  watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
-  watch('spec/spec_helper.rb')  { "spec" }
+#guard 'rspec', :cli => '--drb', :all_after_pass => false do
+  #watch(%r{^spec/.+_spec\.rb$})
+  #watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
+  #watch('spec/spec_helper.rb')  { "spec" }
 
-  watch(%r{^spec/.+_spec\.rb$})
-  watch(%r{^app/(.+)\.rb$})                           { |m| "spec/#{m[1]}_spec.rb" }
-  watch(%r{^lib/(.+)\.rb$})                           { |m| "spec/lib/#{m[1]}_spec.rb" }
-  #watch(%r{^app/controllers/(.+)_(controller)\.rb$})  { |m| ["spec/#{m[2]}s/#{m[1]}_#{m[2]}_spec.rb", "spec/requests/#{m[1]}_spec.rb"] }
-  watch(%r{^app/controllers/(.+)_(controller)\.rb$})  { |m| "spec/#{m[2]}s/#{m[1]}_#{m[2]}_spec.rb" }
-  watch(%r{^spec/support/(.+)\.rb$})                  { "spec" }
-  watch('spec/spec_helper.rb')                        { "spec" }
-  watch('app/controllers/application_controller.rb')  { "spec/controllers" }
-  # Capybara request specs
-  watch(%r{^app/views/(.+)/.*\.(erb|haml)$})          { |m| "spec/requests/#{m[1]}_spec.rb" }
-  watch(%r{^app/views/(.+)/.*\.(erb|haml)$})          { |m| "spec/requests/#{m[1]}_spec.rb" }
-  watch('spec/factories.rb')                          { "spec" }
-end
+  #watch(%r{^spec/.+_spec\.rb$})
+  #watch(%r{^app/(.+)\.rb$})                           { |m| "spec/#{m[1]}_spec.rb" }
+  #watch(%r{^lib/(.+)\.rb$})                           { |m| "spec/lib/#{m[1]}_spec.rb" }
+  ##watch(%r{^app/controllers/(.+)_(controller)\.rb$})  { |m| ["spec/#{m[2]}s/#{m[1]}_#{m[2]}_spec.rb", "spec/requests/#{m[1]}_spec.rb"] }
+  #watch(%r{^app/controllers/(.+)_(controller)\.rb$})  { |m| "spec/#{m[2]}s/#{m[1]}_#{m[2]}_spec.rb" }
+  #watch(%r{^spec/support/(.+)\.rb$})                  { "spec" }
+  #watch('spec/spec_helper.rb')                        { "spec" }
+  #watch('app/controllers/application_controller.rb')  { "spec/controllers" }
+  ## Capybara request specs
+  #watch(%r{^app/views/(.+)/.*\.(erb|haml)$})          { |m| "spec/requests/#{m[1]}_spec.rb" }
+  #watch(%r{^app/views/(.+)/.*\.(erb|haml)$})          { |m| "spec/requests/#{m[1]}_spec.rb" }
+  #watch('spec/factories.rb')                          { "spec" }
+#end

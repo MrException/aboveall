@@ -1,2 +1,7 @@
-%h1
-  Order
+%h1 Order
+
+=simple_form_for(@order, :url => admin_order_path) do |f|
+  =f.input :filled
+  =f.input :shipped
+  =f.input :tracking, label: 'Tracking Number'
+  =f.submit 'Update'

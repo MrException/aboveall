@@ -15,63 +15,58 @@ describe Admin::OrdersController do
   before do
     Order.stub(:find).and_return(order)
     Order.stub(:all).and_return(orders)
-    # this seems to be the only way to stub out the :all method with CanCan
+    # this seems to be the only way to stub out #all with CanCan
     ActiveRecord::Relation.any_instance.stub(:joins).and_return(orders)
   end
 
   describe "GET 'index'" do
     it "should be successful" do
-      get 'index'
+      get "index"
       response.should be_success
     end
 
-    it "assigns all users as @users" do
+    it "assigns all orders as @orders" do
       get :index
       assigns(:orders).should eq(orders)
     end
   end
 
-  #describe "GET 'edit'" do
-    #it "assigns the requested user as @user" do
-      #get :edit, :id => user.id
-      #assigns(:user).should eq(user)
-    #end
-  #end
+  describe "GET 'edit'" do
+    it "assigns the requested order as @order" do
+      get :edit, :id => order.id
+      assigns(:order).should eq(order)
+    end
+  end
 
-  #describe "PUT update" do
-    #describe "with valid params" do
-      #let(:user_params) { FactoryGirl.attributes_for(:user) }
+  describe "PUT update" do
+    context "with valid params" do
+      before { order.stub(:update_attributes).and_return(true) }
 
-      #it "updates the requested user" do
-        #user.should_receive(:update_attributes).with({'these' => 'params'})
-        #put :update, :id => user.id, :user => {'these' => 'params'}
-      #end
+      it "updates the requested order" do
+        order.should_receive(:update_attributes).with({'these' => 'params'})
+        put :update, :id => order.id, :order => {'these' => 'params'}
+      end
 
-      #it "assigns the requested user as @user" do
-        #put :update, :id => user.id, :user => user_params
-        #assigns(:user).should eq(user)
-      #end
+      it "redirects to the index" do
+        put :update, :id => order.id
+        response.should redirect_to admin_orders_path
+      end
+    end
 
-      #it "redirects to the index" do
-        #put :update, :id => user.id, :user => user_params
-        #response.should redirect_to admin_users_path
-      #end
-    #end
+    context "with invalid params" do
+      before { order.stub(:update_attributes).and_return(false) }
 
-    #describe "with invalid params" do
-      #it "assigns the user as @user" do
-        ## Trigger the behavior that occurs when invalid params are submitted
-        #user.stub(:update_attributes).and_return(false)
-        #put :update, :id => user.id, :user => {}
-        #assigns(:user).should eq(user)
-      #end
+      it "assigns the order as @order" do
+        # Trigger the behavior that occurs when invalid params are submitted
+        put :update, :id => order.id, :order => {}
+        assigns(:order).should eq(order)
+      end
 
-      #it "re-renders the 'edit' template" do
-        ## Trigger the behavior that occurs when invalid params are submitted
-        #user.stub(:update_attributes).and_return(false)
-        #put :update, :id => user.id, :user => {}
-        #response.should render_template("edit")
-      #end
-    #end
-  #end
+      it "re-renders the 'edit' template" do
+        # Trigger the behavior that occurs when invalid params are submitted
+        put :update, :id => order.id, :order => {}
+        should redirect_to action: 'edit'
+      end
+    end
+  end
 end

@@ -3,36 +3,59 @@ require 'spec_helper'
 describe OrdersController do
   login_user
 
-  describe 'GET new' do
-    it 'assigns a new order as @order' do
-      get :new
-      assigns(:order).should be_a_new(Order)
+  let(:cart) { FactoryGirl.build(:cart) }
+
+  before do
+    controller.current_user.cart = cart
+  end
+
+  describe "GET new" do
+    context "successful" do
+      it "assigns a new order as @order" do
+        get :new
+        assigns(:order).should be_a_new(Order)
+      end
+
+      it "should copy products from the cart" do
+        get :new
+        assigns(:order).product_line_items.should eq cart.product_line_items
+      end
     end
 
-    it 'should copy products from the cart' do
-      cart = FactoryGirl.build(:cart)
-      controller.current_user.cart = cart
-      get :new
-      assigns(:order).product_line_items.should eq cart.product_line_items
+    context "unsuccessful" do
+      it "forwards back to the cart when cart is empty" do
+        cart.stub(:empty?).and_return true
+        get :new
+        should redirect_to controller.current_user.cart
+      end
     end
   end
 
-  describe 'POST create' do
-    context 'successful' do
-      before(:each) do
-        cart = FactoryGirl.build(:cart)
-        controller.current_user.cart = cart
-      end
-
-      it 'creates a new order' do
+  describe "POST create" do
+    context "successful" do
+      it "creates a new order" do
         expect {
           post :create
-        }.to change(Order, :count).by(1)
+        }.to change(Order, :count).by 1
       end
 
-      it 'empties out the cart' do
+      it "empties out the cart" do
         post :create
         controller.current_user.cart.product_line_items.should be_empty
+      end
+    end
+
+    context "unsuccessful" do
+      it "forwards back to the cart when cart is empty" do
+        cart.stub(:empty?).and_return true
+        post :create
+        should redirect_to controller.current_user.cart
+      end
+
+      it "forwards back to the new order screen on order save error" do
+        Order.any_instance.stub(:save).and_return false
+        post :create
+        should redirect_to new_order_path
       end
     end
   end

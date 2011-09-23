@@ -13,5 +13,10 @@ describe 'Administrating Orders' do
 
   it 'allows you to edit orders' do
     find('#order-list').first('tr.order').click_on 'Edit'
+    check 'Filled'
+    check 'Shipped'
+    fill_in 'Tracking Number', with: '123456'
+    click_on 'Update'
+    find('#order-list').first('tr.order').should have_content '123456'
   end
 end

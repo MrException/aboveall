@@ -3,7 +3,10 @@ class CartsController < SecureController
   end
 
   def update
-    @cart.update_attributes(params[:cart])
-    redirect_to action: 'show'
+    if @cart.update_attributes(params[:cart])
+      redirect_to current_user.cart
+    else
+      redirect_to current_user.cart, alert: 'Error updating your cart!'
+    end
   end
 end

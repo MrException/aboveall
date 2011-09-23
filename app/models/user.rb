@@ -45,6 +45,10 @@ class User < ActiveRecord::Base
     self.role.name == "authorized"
   end
 
+  def full_name
+    "#{last_name}, #{first_name}"
+  end
+
   private
 
   def init

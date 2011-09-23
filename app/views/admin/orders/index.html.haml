@@ -3,6 +3,22 @@
 %table#order-list
   %thead
     %tr
+      %th Name
+      %th Total Price
+      %th Date
+      %th Payment Received?
+      %th Order Filled?
+      %th Order Shipped?
+      %th Tracking Number
+      %th
   %tbody
-    - @orders.each_with_index do |user,i| 
+    - @orders.each_with_index do |order,i| 
       %tr.order{:class => i % 2 == 0 ? 'odd' : 'even'}
+        %td= order.user.full_name
+        %td= number_to_currency(order.total.to_s)
+        %td= order.created_at.strftime('%b %e, %Y')
+        %td= order.payment_received ? 'Yes' : 'No'
+        %td= order.filled ? 'Yes' : 'No'
+        %td= order.shipped ? 'Yes' : 'No'
+        %td= order.tracking
+        %td= link_to 'Edit', edit_admin_order_path(order)

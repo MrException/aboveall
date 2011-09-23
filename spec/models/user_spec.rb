@@ -25,23 +25,6 @@ describe User do
     end
   end
 
-  describe "Save User" do
-    it "can't be saved without an email" do
-      user = FactoryGirl.build(:user, :email => '')
-      user.should have(2).errors_on(:email)
-    end
-
-    it "can't be saved without a first name" do
-      user = FactoryGirl.build(:user, :first_name => '')
-      user.should have(1).error_on(:first_name)
-    end
-
-    it "can't be saved without a last name" do
-      user = FactoryGirl.build(:user, :last_name => '')
-      user.should have(1).error_on(:last_name)
-    end
-  end
-
   describe "Roles" do
     it "can be authorized" do
       u = User.new
@@ -55,6 +38,13 @@ describe User do
       u.make_admin!
       u.role.should_not be_nil
       u.should be_admin
+    end
+  end
+
+  context "#name" do
+    it "should return the full name as 'lname, fname'" do
+      user = FactoryGirl.build(:user)
+      user.full_name.should eq "#{user.last_name}, #{user.first_name}"
     end
   end
 end

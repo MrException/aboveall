@@ -18,6 +18,15 @@ FactoryGirl.define do
     last_name "McGee"
     password "please"
     password_confirmation "please"
+
+    road "123 This Rd"
+    city "Kelowna"
+    province "BC"
+    postal_code "a1a1a1"
+
+    gender "M"
+    dob Time.now
+
     sequence(:email) { |n| "user#{n}@test.com" }
     after_build { |user| user.authorize! }
 

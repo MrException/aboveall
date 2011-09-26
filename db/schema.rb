@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110908212737) do
+ActiveRecord::Schema.define(:version => 20110923203226) do
 
   create_table "carts", :force => true do |t|
     t.datetime "created_at"
@@ -23,6 +23,10 @@ ActiveRecord::Schema.define(:version => 20110908212737) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.boolean  "filled"
+    t.boolean  "payment_received"
+    t.string   "tracking"
+    t.boolean  "shipped"
   end
 
   create_table "product_line_items", :force => true do |t|
@@ -37,7 +41,7 @@ ActiveRecord::Schema.define(:version => 20110908212737) do
   create_table "products", :force => true do |t|
     t.string   "title"
     t.string   "description"
-    t.decimal  "price",              :precision => 10, :scale => 0
+    t.decimal  "price",              :precision => 10, :scale => 2
     t.string   "unit"
     t.boolean  "hidden"
     t.datetime "created_at"
@@ -70,6 +74,14 @@ ActiveRecord::Schema.define(:version => 20110908212737) do
     t.string   "first_name"
     t.string   "last_name"
     t.integer  "role_id"
+    t.string   "country"
+    t.string   "road"
+    t.string   "apt_number"
+    t.string   "city"
+    t.string   "province"
+    t.string   "postal_code"
+    t.string   "gender"
+    t.date     "dob"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

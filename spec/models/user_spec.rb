@@ -7,6 +7,24 @@ describe User do
     should validate_presence_of(:first_name)
     should validate_presence_of(:last_name)
     should validate_presence_of(:email)
+    should validate_presence_of(:road)
+    should validate_presence_of(:city)
+    should validate_presence_of(:province)
+    should validate_presence_of(:postal_code)
+    should validate_presence_of(:gender)
+    should validate_presence_of(:dob)
+  end
+  it "should allow mass assignment of fields" do
+    should allow_mass_assignment_of(:first_name)
+    should allow_mass_assignment_of(:last_name)
+    should allow_mass_assignment_of(:email)
+    should allow_mass_assignment_of(:road)
+    should allow_mass_assignment_of(:apt_number)
+    should allow_mass_assignment_of(:city)
+    should allow_mass_assignment_of(:province)
+    should allow_mass_assignment_of(:postal_code)
+    should allow_mass_assignment_of(:gender)
+    should allow_mass_assignment_of(:dob)
   end
   it {
     should validate_uniqueness_of(:email)

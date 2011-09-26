@@ -18,10 +18,17 @@ puts "Created three roles.\n"
 
 puts 'SETTING UP DEFAULT USER LOGIN'
 user = User.create! ({ :first_name => 'Bobby',
-  :last_name => 'McGee',
-  :email => 'user@test.com',
-  :password => 'please',
-  :password_confirmation => 'please'
+  last_name: 'McGee',
+  email: 'user@test.com',
+  password: 'please',
+  password_confirmation: 'please',
+  road: "213 Here Rd",
+  city: "Kelowna",
+  province: "BC",
+  city: "Kelowna",
+  postal_code: "a1a1a1",
+  gender: "M",
+  dob: Time.now
 })
 r = Role.where(:name => 'authorized').first
 user.role = r
@@ -30,10 +37,17 @@ puts "Created new user.\n"
 
 puts 'SETTING UP DEFAULT ADMIN USER'
 user = User.create! ({ :first_name => 'Bobby',
-  :last_name => 'McGee',
-  :email => 'admin@test.com',
-  :password => 'please',
-  :password_confirmation => 'please'
+  last_name: 'McGee',
+  email: 'admin@test.com',
+  password: 'please',
+  password_confirmation: 'please',
+  road: "213 Here Rd",
+  city: "Kelowna",
+  province: "BC",
+  city: "Kelowna",
+  postal_code: "a1a1a1",
+  gender: "M",
+  dob: Time.now
 })
 r = Role.where(:name => 'admin').first
 user.role = r

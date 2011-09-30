@@ -1,4 +1,5 @@
-= form_for @product, :html => { :multipart => true } do |f|
+= simple_form_for @product, :html => { :multipart => true } do |f|
+
   -if @product.errors.any?
     #error_explanation
       %h2= "#{pluralize(@product.errors.count, "error")} prohibited this product from being saved:"
@@ -6,35 +7,20 @@
         - @product.errors.full_messages.each do |msg|
           %li= msg
 
-  %p.field
-    .label
-      = f.label :title
-    .data
-      = f.text_field :title
-  %p.field
-    .label
-      = f.label :description
-    .data
-      = f.text_area :description
-  %p.field
-    .label
-      = f.label :image
-    .data
-      = f.file_field :image
-  %p.field
-    .label
-      = f.label :price
-    .data
-      = f.text_field :price
-  %p.field
-    .label
-      = f.label :unit
-    .data
-      = f.text_field :unit
-  %p.field
-    .label
-      = f.label :hidden
-    .data
-      = f.check_box :hidden
-  .actions
-    = f.submit 'Save'
+  .left
+    - if local_assigns.has_key? :new
+      .input.file
+        = f.label :image
+        = f.file_field :image
+    - if local_assigns.has_key? :edit
+      .input.file
+        %label Image
+        = image_tag @product.image.url(:medium)
+
+    = f.input :price
+    = f.input :unit
+
+  .right
+    = f.input :title
+    = f.input :description, as: :text
+    = f.submit

@@ -13,6 +13,9 @@ describe User do
     should validate_presence_of(:postal_code)
     should validate_presence_of(:gender)
     should validate_presence_of(:dob)
+    should validate_presence_of(:license_number)
+    should validate_presence_of(:possession_limit)
+    should validate_presence_of(:license_expiry)
   end
   it "should allow mass assignment of fields" do
     should allow_mass_assignment_of(:first_name)
@@ -25,6 +28,9 @@ describe User do
     should allow_mass_assignment_of(:postal_code)
     should allow_mass_assignment_of(:gender)
     should allow_mass_assignment_of(:dob)
+    should allow_mass_assignment_of(:license_number)
+    should allow_mass_assignment_of(:possession_limit)
+    should allow_mass_assignment_of(:license_expiry)
   end
   it {
     should validate_uniqueness_of(:email)

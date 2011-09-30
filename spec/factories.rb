@@ -27,6 +27,10 @@ FactoryGirl.define do
     gender "M"
     dob Time.now
 
+    possession_limit 60
+    license_number "1234567890"
+    license_expiry Time.now
+
     sequence(:email) { |n| "user#{n}@test.com" }
     after_build { |user| user.authorize! }
 

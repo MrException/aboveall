@@ -1,28 +1,12 @@
-%h1
-  Edit #{resource_name.to_s.humanize}
-=simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
-  =devise_error_messages!
+%h1 Edit #{resource_name.to_s.humanize}
 
-  %h3 General
-  =f.input :last_name
-  =f.input :first_name
-  =f.input :email
-  =f.input :password, hint: "Leave blank if you don't want to change it"
-  =f.input :password_confirmation
-  =f.input :current_password, hint: "We need your current password to confirm chages"
+= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
 
-  %h3 Address
-  =f.input :road
-  =f.input :apt_number
-  =f.input :city
-  =f.input :province
-  =f.input :postal_code
+  = devise_error_messages!
 
-  %h3 Other
-  =f.input :gender
-  =f.input :dob
+  = render 'devise/registrations/form', f: f, edit: true
 
-  =f.submit "Update"
+  = f.submit "Update"
 
 %h2 Cancel my account
 %p

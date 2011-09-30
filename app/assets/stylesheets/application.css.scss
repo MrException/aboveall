@@ -53,7 +53,7 @@
 // @include blueprint;
 
 @include establish-baseline;
-@include sticky-footer(30px, "#content", "#content_footer", "#footer");
+/*@include sticky-footer(30px, "#content", "#content_footer", "#footer");*/
 
 body {
   background: $background-color;
@@ -115,10 +115,6 @@ body {
     border-top: 1px solid $border-color;
     border-bottom: 1px solid $border-color;
     text-align: center;
-  }
-
-  form {
-    // @include blueprint-form;
   }
 }
 

@@ -1,0 +1,34 @@
+.left
+  %h3 General
+  = f.input :last_name
+  = f.input :first_name
+  = f.input :email
+
+  - if local_assigns.has_key? :edit
+    = f.input :password, hint: "Leave blank if you don't want to change it"
+    = f.input :password_confirmation
+    = f.input :current_password, hint: "We need your current password to confirm chages"
+
+  - if local_assigns.has_key? :new
+    = f.input :password
+    = f.input :password_confirmation
+
+  - if local_assigns.has_key? :admin
+    = f.association :role
+
+  %h3 Address
+  = f.input :road
+  = f.input :apt_number
+  = f.input :city
+  = f.input :province
+  = f.input :postal_code
+
+.right
+  %h3 Other
+  = f.input :gender
+  = f.input :dob
+
+  %h3 License
+  = f.input :license_number
+  = f.input :possession_limit
+  = f.input :license_exiry

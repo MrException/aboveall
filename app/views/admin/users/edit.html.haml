@@ -1,22 +1,7 @@
-%h2
-  User
-=simple_form_for(@user, :url => admin_user_path) do |f|
+%h2 User
 
-  %h3 General
-  = f.input :last_name
-  = f.input :first_name
-  = f.input :email
-  = f.association :role
+= simple_form_for(@user, :url => admin_user_path) do |f|
 
-  %h3 Address
-  =f.input :road
-  =f.input :apt_number
-  =f.input :city
-  =f.input :province
-  =f.input :postal_code
+  = render 'devise/registrations/form', f: f, admin: true
 
-  %h3 Other
-  =f.input :gender
-  =f.input :dob
-
-  =f.button :submit
+  = f.button :submit

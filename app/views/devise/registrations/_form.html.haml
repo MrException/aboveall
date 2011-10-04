@@ -4,20 +4,22 @@
     = f.input :last_name
     = f.input :first_name
     = f.input :email
+    = f.input :current_password, hint: "We need your current password to confirm chages", label: "Password", required: true
 
     - if local_assigns.has_key? :admin
-      = f.association :role
+      = f.association :role, as: :radio
 
   - if local_assigns.has_key? :edit
     %fieldset
-      %legend Password
-      = f.input :password, hint: "Leave blank if you don't want to change it"
+      %legend Change Password
+      %span.help
+        Leave blank if you don't want to change it.
+      = f.input :password, label: "New"
       = f.input :password_confirmation, label: "Confirmation"
-      = f.input :current_password, hint: "We need your current password to confirm chages", label: "Current", required: true
 
   - if local_assigns.has_key? :new
     %fieldset
-      %legend Password
+      %legend Change Password
       = f.input :password
       = f.input :password_confirmation, label: "Confirmation"
 
@@ -32,14 +34,39 @@
 .right
   %fieldset
     %legend Other
-    = f.input :gender
-    = f.input :dob
+    = f.input :gender, collection: ['M','F']
+    = f.input :dob, as: :date,
+      start_year: Date.today.year - 100,
+      end_year: Date.today.year - 18
 
   %fieldset
     %legend License
     = f.input :license_number, label: "Number"
     = f.input :possession_limit, label: "Limit"
-    = f.input :license_expiry, label: "Expires"
+    = f.input :license_expiry, label: "Expires", as: :date,
+      start_year: Date.today.year,
+      end_year: Date.today.year + 5
+
+  %fieldset
+    %legend License Scan
+    - if @user.license.present?
+      .input.file
+        .image
+          = image_tag @user.license.url(:medium)
+        = f.label :license, "Change"
+        = f.file_field :license
+    - else
+      %span.help
+        A scan of your license is not required to complete registration. However,
+        if our staff are not able to verify the validity of your information
+        through some other means, we will request a picture of your license from
+        you. To speed up the process, it is advised that you upload a scan of your
+        license.
+
+      .input.file
+        = f.label :license, "License"
+        = f.file_field :license
+
 
 .bottom
   - if local_assigns.has_key? :edit

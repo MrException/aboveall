@@ -5,14 +5,36 @@ class User < ActiveRecord::Base
     :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :role_id, :road, :apt_number, :city, :province, :postal_code, :gender, :dob, :license_number, :possession_limit, :license_expiry 
+  attr_accessible :first_name,
+    :last_name,
+    :email,
+    :password,
+    :password_confirmation,
+    :remember_me,
+    :road,
+    :apt_number,
+    :city,
+    :province,
+    :postal_code,
+    :gender,
+    :dob,
+    :license_number,
+    :possession_limit,
+    :license_expiry,
+    :license
 
-  validates_presence_of :first_name, :last_name, :email, :role_id, :road, :city, :province, :postal_code, :gender, :dob, :license_number, :possession_limit, :license_expiry
+  validates_presence_of :first_name, :last_name, :email, :road, :city, :province, :postal_code, :gender, :dob, :license_number, :possession_limit, :license_expiry
   validates_uniqueness_of :email, :case_sensative => false
 
-  belongs_to :role, :readonly => true
+  belongs_to :role
 
   has_one :cart
+
+  ### License Scan Attachment related stuff
+  has_attached_file :license, styles: { medium: "400x400" }
+
+  validates_attachment_content_type :license, content_type: /image.*/
+  validates_attachment_size :license, less_than: 2.megabyte
 
   after_initialize :init
 

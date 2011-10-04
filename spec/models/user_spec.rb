@@ -35,6 +35,14 @@ describe User do
   it {
     should validate_uniqueness_of(:email)
   }
+  describe "license attachment" do
+    it { should have_attached_file(:license) }
+    it { should validate_attachment_content_type(:license).
+         allowing('image/png', 'image/gif').
+         rejecting('text/plain', 'text/xml') }
+    it { should validate_attachment_size(:license).
+         less_than(2.megabytes) }
+  end
 
   describe "New User" do
     it "should have it's role set to unauthorized" do

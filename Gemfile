@@ -52,6 +52,8 @@ group :development do
 
   gem 'rb-inotify'
   gem 'libnotify'
+
+  gem 'letter_opener'
 end
 
 group :production do

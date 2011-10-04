@@ -4,7 +4,8 @@
     = f.input :last_name
     = f.input :first_name
     = f.input :email
-    = f.input :current_password, hint: "We need your current password to confirm chages", label: "Password", required: true
+    - if local_assigns.has_key? :edit
+      = f.input :current_password, hint: "We need your current password to confirm chages", label: "Password", required: true
 
     - if local_assigns.has_key? :admin
       = f.association :role, as: :radio
@@ -19,8 +20,8 @@
 
   - if local_assigns.has_key? :new
     %fieldset
-      %legend Change Password
-      = f.input :password
+      %legend Password
+      = f.input :password, required: true
       = f.input :password_confirmation, label: "Confirmation"
 
   %fieldset

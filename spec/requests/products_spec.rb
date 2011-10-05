@@ -84,7 +84,6 @@ describe "Products" do
         fill_in "Title", :with => ""
         fill_in "Description", :with => ""
         fill_in "Price", :with => ""
-        fill_in "Unit", :with => ""
         click_on "Create Product"
         page.should have_selector "#error_explanation"
       end.should_not change(Product, :count)
@@ -98,7 +97,6 @@ describe "Products" do
         fill_in "Title", :with => "A Title"
         fill_in "Description", :with => "A Description"
         fill_in "Price", :with => "1000000.00"
-        fill_in "Unit", :with => "g"
         attach_file "Image", image
         click_on "Create Product"
         page.should_not have_selector "div#error_explanation"
@@ -121,7 +119,6 @@ describe "Products" do
       fill_in "Title", :with => ""
       fill_in "Description", :with => ""
       fill_in "Price", :with => ""
-      fill_in "Unit", :with => ""
       click_on "Update Product"
       page.should have_selector "#error_explanation"
     end
@@ -134,7 +131,6 @@ describe "Products" do
       fill_in "Title", :with => "A Title"
       fill_in "Description", :with => "A Description"
       fill_in "Price", :with => "1000000.00"
-      fill_in "Unit", :with => "g"
       click_on "Update Product"
       page.should_not have_selector "div#error_explanation"
     end

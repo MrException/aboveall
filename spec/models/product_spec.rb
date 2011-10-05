@@ -16,7 +16,6 @@ describe Product do
     p = Product.new
     p.should have(1).error_on(:title)
     p.should have(1).error_on(:description)
-    p.should have(1).error_on(:unit)
     p.should have(2).errors_on(:price)
   end
 

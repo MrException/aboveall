@@ -51,7 +51,6 @@ FactoryGirl.define do
     sequence(:title) { |n| "Product Name #{n}" }
     description "A nice product description here."
     price 9.99
-    unit 'g'
     image { fixture_file_upload(File.join(Rails.root, 'spec/test_image.jpg'), 'image/jpg')  }
     hidden false
   end

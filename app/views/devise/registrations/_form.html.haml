@@ -8,7 +8,7 @@
       = f.input :current_password, hint: "We need your current password to confirm chages.", label: "Password", required: true
 
     - if local_assigns.has_key? :admin
-      = f.association :role, as: :radio
+      = f.association :role
 
   - if local_assigns.has_key? :edit
     %fieldset

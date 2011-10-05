@@ -66,4 +66,19 @@ describe Admin::UsersController do
       end
     end
   end
+
+  describe "PUT authorize" do
+    describe "with valid params" do
+      it "authorizes the user" do
+        user.should_receive(:authorize!)
+        put :authorize, id: user.id
+      end
+
+      it "redirects to the index with a message" do
+        put :authorize, id: user.id
+        should redirect_to admin_users_path
+        flash.notice.should_not be_nil
+      end
+    end
+  end
 end

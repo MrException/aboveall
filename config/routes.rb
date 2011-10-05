@@ -8,7 +8,11 @@ Aboveall::Application.routes.draw do
   resources :product_line_items, :only => [:create, :update, :destroy]
 
   namespace :admin do
-    resources :users, :only => [:index, :edit, :update]
+    resources :users, :only => [:index, :edit, :update] do
+      member do
+        put :authorize
+      end
+    end
     resources :orders, :only => [:index, :show, :edit, :update]
   end
 

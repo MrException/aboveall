@@ -16,4 +16,9 @@ class Admin::UsersController < SecureController
     end
   end
 
+  def authorize
+    @user.authorize!
+    @user.save
+    redirect_to admin_users_path, notice: "User was authorized."
+  end
 end

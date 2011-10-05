@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111003183315) do
+ActiveRecord::Schema.define(:version => 20111005045546) do
 
   create_table "carts", :force => true do |t|
     t.datetime "created_at"
@@ -88,6 +88,9 @@ ActiveRecord::Schema.define(:version => 20111003183315) do
     t.string   "license_content_type"
     t.integer  "license_file_size"
     t.datetime "license_updated_at"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

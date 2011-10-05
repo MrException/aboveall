@@ -31,6 +31,8 @@ FactoryGirl.define do
     license_number "1234567890"
     license_expiry Time.now
 
+    confirmed_at 1.year.ago
+
     sequence(:email) { |n| "user#{n}@test.com" }
     after_build { |user| user.authorize! }
 

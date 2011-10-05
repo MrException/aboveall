@@ -8,12 +8,25 @@
 #= require jquery_ujs
 #= require_tree .
 
-$(document).ready ->
-  $('.product-small').click ->
-    window.location=$(this).find('a').attr('href')
-    return false
+getTooltipPos = (element, tooltip) ->
+  top = element.position().top
+  left = element.position().left
 
-  button_replace("#navigation form", "#logout", "Logout")
+  top -= tooltip.outerHeight()
+  left += element.outerWidth()
+
+  {top: top, left: left}
+ 
+showTooltip = (event) ->
+  $('div.tooltip').remove()
+  hint = $(this).find("span.hint").text()
+  return if not hint.length
+  tooltip = $('<div class="tooltip">'+hint+'</div>')
+  tooltip.css(getTooltipPos($(this), tooltip))
+  tooltip.appendTo(this)
+  tooltip.fadeIn()
+ 
+hideTooltip = -> $('div.tooltip').fadeOut()
 
 button_replace = (form, button, text) ->
   link = "<a href=\""
@@ -26,3 +39,30 @@ button_replace = (form, button, text) ->
   link += "</a>"
   $(form).find(button).after(link)
   $(form).find(button).css({display: "none"})
+
+$(document).ready ->
+  $('.product-small').click ->
+    window.location=$(this).find('a').attr('href')
+
+  button_replace("#navigation form", "#logout", "Logout")
+ 
+	$(".simple_form .input").bind({
+	   mouseenter: showTooltip,
+	   mouseleave: hideTooltip
+  })
+
+###
+# Google web fonts
+WebFontConfig = {
+  google: { families: [ 'Arvo:700:latin', 'Molengo:latin' ] }
+}
+(->
+  wf = document.createElement('script')
+  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+    '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js'
+  wf.type = 'text/javascript'
+  wf.async = 'true'
+  s = document.getElementsByTagName('script')[0]
+  s.parentNode.insertBefore(wf, s)
+)()
+###

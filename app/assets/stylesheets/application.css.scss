@@ -74,11 +74,12 @@ body {
   #header {
     @include column($blueprint-grid-columns, true);
     background: $header-background-color;
-    @include adjust-font-size-to(90px);
+    @include adjust-font-size-to(72px);
     text-align: center;
-    font-family: georgia serif;
     padding-top: $base-line-height;
     padding-bottom: $base-line-height;
+    font-family: $header-font-family;
+    font-weight: 700;
 
     a { color: $font-color; }
   }
@@ -121,6 +122,7 @@ body {
 // Import page specific files here
 @import 'products';
 @import 'users';
+@import 'forms';
 
 // Print based stuff
 body {

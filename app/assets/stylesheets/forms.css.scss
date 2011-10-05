@@ -1,0 +1,74 @@
+#content .simple_form {
+  .left {
+    @include column(11);
+  }
+
+  .right {
+    @include column(11,true);
+  }
+
+  .bottom {
+    @include column($blueprint-grid-columns, true);
+  }
+
+  @include blueprint-form-layout;
+  @include blueprint-form-borders;
+  @include blueprint-form-sizes(250px,350px);
+
+  label {
+    width: 100px;
+    padding-right: 10px;
+    padding-top: .75em;
+    float: left;
+    display: block;
+    text-align: right;
+  }
+
+  .hint {
+    display: none;
+  }
+
+  .tooltip {
+    background-color: $menu-background;
+    border: 1px solid $border-color;
+    padding: 10px 10px;
+    display: none;
+    position: absolute;
+    z-index: 2;
+
+    /* outline radius for mozilla/webkit only */
+    -moz-box-shadow: 0 0 10px #000;
+    -webkit-box-shadow: 0 0 10px #000
+  }
+
+  fieldset {
+    margin-bottom: 0;
+    margin-top: 22px;
+  }
+
+  input[type=submit] {
+    margin-top: 15px;
+  }
+
+  input[type=file] {
+    width: 250px;
+    margin-top: 12px;
+  }
+
+  .field_with_errors {
+    border: 1px solid red;
+  }
+
+  span.help {
+    @include adjust-font-size-to(14px);
+    text-align: center;
+  }
+
+  .error {
+    display: none;
+  }
+
+  .image {
+    text-align: center;
+  }
+}

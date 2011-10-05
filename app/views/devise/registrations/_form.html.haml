@@ -5,7 +5,7 @@
     = f.input :first_name
     = f.input :email
     - if local_assigns.has_key? :edit
-      = f.input :current_password, hint: "We need your current password to confirm chages", label: "Password", required: true
+      = f.input :current_password, hint: "We need your current password to confirm chages.", label: "Password", required: true
 
     - if local_assigns.has_key? :admin
       = f.association :role, as: :radio
@@ -14,22 +14,21 @@
     %fieldset
       %legend Change Password
       %span.help
-        Leave blank if you don't want to change it.
-      = f.input :password, label: "New"
-      = f.input :password_confirmation, label: "Confirmation"
+      = f.input :password, label: "New", hint: "Leave blank if you don't want to change it."
+      = f.input :password_confirmation, label: "Confirmation", hint: "Must match above."
 
   - if local_assigns.has_key? :new
     %fieldset
       %legend Password
       = f.input :password, required: true
-      = f.input :password_confirmation, label: "Confirmation"
+      = f.input :password_confirmation, label: "Confirmation", hint: "Must match above."
 
   %fieldset
     %legend Address
     = f.input :road
     = f.input :apt_number
     = f.input :city
-    = f.input :province
+    = f.input :province, collection: provinces
     = f.input :postal_code
 
 .right
@@ -42,8 +41,8 @@
 
   %fieldset
     %legend License
-    = f.input :license_number, label: "Number"
-    = f.input :possession_limit, label: "Limit"
+    = f.input :license_number, label: "Number", hint: "As seen on your license."
+    = f.input :possession_limit, label: "Limit", hint: "Amount in grams you are allowed to possess at any one time."
     = f.input :license_expiry, label: "Expires", as: :date,
       start_year: Date.today.year,
       end_year: Date.today.year + 5

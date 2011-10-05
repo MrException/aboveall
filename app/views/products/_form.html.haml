@@ -8,19 +8,25 @@
           %li= msg
 
   .left
-    - if local_assigns.has_key? :new
-      .input.file
-        = f.label :image
-        = f.file_field :image
-    - if local_assigns.has_key? :edit
-      .input.file
-        %label Image
-        = image_tag @product.image.url(:medium)
-
-    = f.input :price
-    = f.input :unit
+    %fieldset
+      %legend Info
+      = f.input :title, hint: "A unique, descriptive title."
+      = f.input :price, hint: "Price for 1 gram of this product."
+      = f.input :description, as: :text, hint: "As much information about this product as possible."
 
   .right
-    = f.input :title
-    = f.input :description, as: :text
+    %fieldset
+      %legend Image
+      - if @product.image.present?
+        .input.file
+          .image
+            = image_tag @product.image.url(:medium)
+          = f.label :image, "Change"
+          = f.file_field :image
+      - else
+        .input.file
+          = f.label :image
+          = f.file_field :image
+
+  .bottom
     = f.submit

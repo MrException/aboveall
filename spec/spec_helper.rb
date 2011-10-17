@@ -54,7 +54,8 @@ Spork.prefork do
 
     # Include test helpers
     config.include RequestMacros
-    config.extend ControllerMacros, :type => :controller
+    config.include MailerMacros
+    config.extend ControllerMacros, type: :controller
 
     config.include Paperclip::Shoulda::Matchers
 
@@ -84,6 +85,9 @@ Spork.prefork do
       Product.any_instance.stub(:destroy_attached_files).and_return(true)
       Product.any_instance.stub(:prepare_for_destroy).and_return(true)
       Paperclip::Attachment.any_instance.stub(:post_process).and_return(true)
+
+      # make sure the email deliveries are empty
+      reset_email
     end
 
     config.after(:all) do

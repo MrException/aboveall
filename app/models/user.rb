@@ -42,14 +42,22 @@ class User < ActiveRecord::Base
 
   def authorize!
     self.role = Role.authorized
+    save!
+  end
+
+  def authorize_and_notify!
+    authorize!
+    RoleMailer.authorized(self).deliver
   end
 
   def unauthorize!
     self.role = Role.unauthorized
+    save!
   end
 
   def make_admin!
     self.role = Role.admin
+    save!
   end
 
   def admin?

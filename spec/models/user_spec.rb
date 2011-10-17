@@ -59,17 +59,22 @@ describe User do
 
   describe "Roles" do
     it "can be authorized" do
-      u = User.new
-      u.authorize!
-      u.role.should_not be_nil
-      u.should be_authorized
+      user = FactoryGirl.build(:dummy_user)
+      user.authorize!
+      user.should be_authorized
+    end
+
+    it "sends an email when authorizing" do
+      user = FactoryGirl.build(:dummy_user)
+      user.authorize_and_notify!
+      user.should be_authorized
+      last_email.to.should include(user.email)
     end
 
     it "can be upgraded to an admin" do
-      u = User.new
-      u.make_admin!
-      u.role.should_not be_nil
-      u.should be_admin
+      user = FactoryGirl.build(:dummy_user)
+      user.make_admin!
+      user.should be_admin
     end
   end
 

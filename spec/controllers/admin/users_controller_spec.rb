@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Admin::UsersController do
   login_admin
 
-  let(:user) { mock_model(User).as_null_object }
+  let(:user) { mock_model(User) }
 
   before do
     User.stub(:find).and_return(user)
@@ -39,12 +39,8 @@ describe Admin::UsersController do
         put :update, :id => user.id, :user => {'these' => 'params'}
       end
 
-      it "assigns the requested user as @user" do
-        put :update, :id => user.id, :user => user_params
-        assigns(:user).should eq(user)
-      end
-
       it "redirects to the index" do
+        user.should_receive(:update_attributes).and_return true
         put :update, :id => user.id, :user => user_params
         response.should redirect_to admin_users_path
       end
@@ -70,11 +66,12 @@ describe Admin::UsersController do
   describe "PUT authorize" do
     describe "with valid params" do
       it "authorizes the user" do
-        user.should_receive(:authorize!)
+        user.should_receive(:authorize_and_notify!)
         put :authorize, id: user.id
       end
 
       it "redirects to the index with a message" do
+        user.should_receive(:authorize_and_notify!)
         put :authorize, id: user.id
         should redirect_to admin_users_path
         flash.notice.should_not be_nil

@@ -18,6 +18,13 @@
     width: 700px;
     padding: 10px;
     margin: 0 auto;
+    font-size: 16px;
+  }
+  div.noreply {
+    font-style: italic;
+    font-weight: bold;
+    text-align: center;
+    font-size: 14px;
   }
   h1 {
     font-size: 72px;
@@ -28,4 +35,9 @@
     %h1 Above All Compassion
 
   .content
+    .noreply
+      Please, do not reply to this email. If you have any questions or concerns, please contact 
+      =mail_to "help@aboveallcompassion.com"
+      If this email has reached you by mistake, please disregard it.
+
     = yield

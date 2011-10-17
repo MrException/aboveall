@@ -1,0 +1,28 @@
+= "\nWelcome #{@resource.first_name}, Thanks for signing up!"
+
+:plain
+
+  Please make sure to read all of the following carefully.
+
+  Email Confirmation
+
+  The next step in the process is confirming your email account. You can confirm your account by navigating to the URL below:
+
+= confirmation_url(@resource, :confirmation_token => @resource.confirmation_token)
+
+:plain
+  You will be taken to our website and automatically logged in. From there you can review and change your account information if required. However, you can not order any products from us until your account has been authorized.
+
+  Account Authorization 
+
+  The regulations of the Canadian Medical Marijuana Association require us to individually verify that each person has a proper license. So our administrators must look over the information your provided us and make sure if corresponds properly to your license information.
+
+  Once you have confirmed your email account, our administrators will start reviewing your account.
+
+  If you have not uploaded a scan of your license, now would be a good time to do that. However, if you believe we have all the necessary information to verify your account, then you don't need to upload a license scan.  
+
+  Once your account has been verified by us, you will receive another email informing you. After that, the site will be open to your use!  
+
+  Thank you very much for signing up!
+
+  See you soon!

@@ -2,4 +2,4 @@
 = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true }) do |f|
   = devise_error_messages!
 
-  = render 'devise/registrations/form', f: f, new: true
+  = render 'form', f: f, new: true

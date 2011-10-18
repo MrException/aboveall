@@ -7,4 +7,10 @@ class RoleMailer < ActionMailer::Base
     mail to: user.email,
       subject: "Account Authorization"
   end
+
+  def unauthorized(user)
+    @user = user
+    mail to: user.email,
+      subject: "Account De-Authorization"
+  end
 end

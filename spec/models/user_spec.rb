@@ -71,6 +71,19 @@ describe User do
       last_email.to.should include(user.email)
     end
 
+    it "can be unauthorized" do
+      user = FactoryGirl.build(:user)
+      user.unauthorize!
+      user.should be_unauthorized
+    end
+
+    it "sends an email when unauthorizing" do
+      user = FactoryGirl.build(:user)
+      user.unauthorize_and_notify!
+      user.should be_unauthorized
+      last_email.to.should include(user.email)
+    end
+
     it "can be upgraded to an admin" do
       user = FactoryGirl.build(:dummy_user)
       user.make_admin!

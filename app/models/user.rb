@@ -55,6 +55,11 @@ class User < ActiveRecord::Base
     save!
   end
 
+  def unauthorize_and_notify!
+    unauthorize!
+    RoleMailer.unauthorized(self).deliver
+  end
+
   def make_admin!
     self.role = Role.admin
     save!

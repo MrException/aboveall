@@ -1,3 +1,7 @@
+- if resource.authorized?
+  .notice
+    Warning: if you alter your account information in any way, the administrators will have to re-evaluate your account. This means that you will no longer be able to use the store until we verify that your information is still valid.
+
 %h1 Edit #{resource_name.to_s.humanize}
 
 = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true, method: :put }) do |f|

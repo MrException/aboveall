@@ -11,6 +11,17 @@ class Order < ActiveRecord::Base
     order
   end
 
+  def self.checkout(cart)
+    order = from_cart(cart)
+    if order.save!
+      cart.empty
+      OrderMailer.new_order(order).deliver
+      order
+    else
+      false
+    end
+  end
+
   def empty?
     product_line_items.empty?
   end

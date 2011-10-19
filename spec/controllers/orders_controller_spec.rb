@@ -53,7 +53,7 @@ describe OrdersController do
       end
 
       it "forwards back to the new order screen on order save error" do
-        Order.any_instance.stub(:save).and_return false
+        Order.stub(:checkout).and_return false
         post :create
         should redirect_to new_order_path
       end

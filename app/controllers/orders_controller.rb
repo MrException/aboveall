@@ -8,9 +8,7 @@ class OrdersController < SecureController
   def create
     return if redirect_if_cart_empty
 
-    @order = Order.from_cart(current_user.cart)
-    if @order.save
-      current_user.cart.empty
+    if @order = Order.checkout(current_user.cart)
       redirect_to root_path, notice: 'Your Order Has Been Placed'
     else
       redirect_to new_order_path, error: 'Error checking out!'

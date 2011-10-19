@@ -1,5 +1,5 @@
 class RoleMailer < ActionMailer::Base
-  default from: "no-reply@aboveallcompassion.com"
+  default from: "do.not.reply@aboveallcompassion.com"
   layout 'email'
 
   def authorized(user)

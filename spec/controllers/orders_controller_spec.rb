@@ -26,7 +26,13 @@ describe OrdersController do
       it "forwards back to the cart when cart is empty" do
         cart.stub(:empty?).and_return true
         get :new
-        should redirect_to controller.current_user.cart
+        should redirect_to controller.current_cart
+      end
+
+      it "forwards back to the cart when over license limit" do
+        controller.stub!(cart_over_limit?: true)
+        get :new
+        should redirect_to controller.current_cart
       end
     end
   end
@@ -56,6 +62,12 @@ describe OrdersController do
         Order.stub(:checkout).and_return false
         post :create
         should redirect_to new_order_path
+      end
+
+      it "forwards back to the cart when over license limit" do
+        controller.stub!(cart_over_limit?: true)
+        post :create
+        should redirect_to controller.current_cart
       end
     end
   end

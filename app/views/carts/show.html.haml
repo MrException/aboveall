@@ -1,4 +1,7 @@
-%p#notice= notice
+- if cart_over_limit?
+  .alert
+    The quantity of items you have in your cart exceeds the amount allowed by your license. You must remove some items before you can checkout.
+
 %h1 Shopping Cart
 - if @cart.product_line_items.any?
   = form_for @cart do |c|
@@ -33,6 +36,6 @@
           %td.money
             = number_to_currency @cart.total
     = submit_tag 'Update'
-  %p= button_to 'Checkout', new_order_path, :method => :get
+  %p= button_to 'Checkout', new_order_path, method: :get, disabled: cart_over_limit?
 - else
   %p Your Cart Is Empty

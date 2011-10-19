@@ -9,41 +9,19 @@ describe ProductLineItemsController do
     let(:cart) { controller.current_user.cart }
 
     describe "with valid params" do
-      it "creates a new line item" do
-        p = product
-        expect {
-          post :create, product_id: p.id
-        }.to change(ProductLineItem, :count).by 1
+      before :each do
+        Cart.stub!(add_product: true)
       end
 
       it "redirects to the cart" do
         post :create, product_id: product.id
         response.should redirect_to(cart)
       end
-
-      context "when the item is already in the cart" do
-        before do
-          cart.product_line_items << pli
-        end
-
-        it "doesn't add item twice" do
-          expect {
-            post :create, product_id: product.id
-          }.to_not change(ProductLineItem, :count)
-        end
-
-        it "increases quantity when added twice" do
-          post :create, product_id: product.id
-          cart.product_line_items[0].quantity.should eq 2
-        end
-      end
     end
 
     describe "with invalid params" do
-      it "should not create a new line item" do
-        expect {
-          post :create, product_id: -1
-        }.to_not change(ProductLineItem, :count).by 1
+      before :each do
+        Cart.stub!(add_product: false)
       end
 
       it "redirects to root with error" do

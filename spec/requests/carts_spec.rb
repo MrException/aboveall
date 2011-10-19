@@ -31,32 +31,32 @@ describe "Carts" do
     end
 
     it 'should allow adding items to cart' do
-      find('#cart-list').all('.product').length.should eq 1
+      find('#cart-list').all('tbody tr').length.should eq 1
       page.should have_no_content 'Your Cart Is Empty'
     end
 
     it 'increases quantity when adding item twice' do
       addproduct
-      find('#cart-list').all('.product').length.should eq 1
+      find('#cart-list').all('tbody tr').length.should eq 1
     end
 
     it 'should persist over logging out' do
       click_button 'Logout'
       capy_login_user
       click_link 'Shopping Cart'
-      find('#cart-list').all('.product').length.should eq 1
+      find('#cart-list').all('tbody tr').length.should eq 1
       page.should have_no_content 'Your Cart Is Empty'
     end
 
     it 'should allow modifying quantities' do
-      first('#cart-list .product').fill_in 'Quantity', with: 2
+      first('#cart-list input[type="text"]').set "2"
       click_button 'Update'
       page.should have_content 'Quantity'
-      first('#cart-list .product').find_field('Quantity').value.should eq "2"
+      first('#cart-list input[type="text"]').value.should eq "2"
     end
 
     it 'should allow deleting products' do
-      first('#cart-list .product').check 'Delete'
+      first('#cart-list input[type="checkbox"]').set "1"
       click_button 'Update'
       page.should have_content 'Your Cart Is Empty'
     end

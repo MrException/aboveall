@@ -21,10 +21,30 @@ class Cart < ActiveRecord::Base
   end
 
   def total
-    total = 0.00
-    product_line_items.each do |pli|
-      total = total + (pli.product.price * pli.quantity)
+    product_line_items.reduce(0.0) do |sum, pli|
+      sum + pli.total
     end
-    total
+  end
+
+  def total_weight
+    product_line_items.reduce(0) do |sum, pli|
+      sum + pli.quantity
+    end
+  end
+
+  def add_product(id)
+    begin
+      product = Product.find(id)
+      pli = pli_from_product product
+      if pli
+        pli.quantity = pli.quantity + 1
+        pli.save
+      else
+        pli = ProductLineItem.new ({ product: product })
+        product_line_items << ProductLineItem.from_product(product)
+      end
+    rescue ActiveRecord::RecordNotFound
+      return false
+    end
   end
 end

@@ -10,4 +10,12 @@ class ProductLineItem < ActiveRecord::Base
   def init
     self.quantity ||= 1
   end
+
+  def self.from_product(product)
+    ProductLineItem.new({ product: product })
+  end
+
+  def total
+    quantity * product.price
+  end
 end

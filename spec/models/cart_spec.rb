@@ -8,8 +8,10 @@ describe Cart do
 
   context "#empty" do
     it 'should remove all line items' do
+      cart.should_not be_empty
       cart.empty
       cart.product_line_items.should be_empty
+      cart.should be_empty
     end
   end
 
@@ -25,22 +27,50 @@ describe Cart do
     end
   end
 
-  context "#empty?" do
-    it "should return true with no line items" do
-      cart.empty
-      cart.empty?.should be_true
-    end
-
-    it "should return false when there are line items" do
-      cart.empty?.should be_false
+  context "#total" do
+    it "should return the sum of the prices of the line items" do
+      cart = Cart.new
+      3.times do
+        cart.product_line_items << mock_model(ProductLineItem, total: 2)
+      end
+      cart.total.should == 6
     end
   end
 
-  context "#total" do
-    it "should return the some of the prices of the line items" do
-      Product.any_instance.stub(:price).and_return 9.99
-      ProductLineItem.any_instance.stub(:quantity).and_return 2
-      cart.total.should == 19.98
+  context "#total_weight" do
+    it "should return the total weight" do
+      cart = Cart.new
+      3.times do
+        cart.product_line_items << mock_model(ProductLineItem, quantity: 2)
+      end
+      cart.total_weight.should == 6
+    end
+  end
+
+  context "#add_product" do
+    let(:cart) { Cart.new }
+
+    it "should succeed if the product exists" do
+      Product.stub!(find: mock_model(Product))
+      cart.add_product(1).should be_true
+    end
+
+    it "should fail if the product doesn't exists" do
+      cart.add_product(-1).should be_false
+    end
+
+    it "shouldn't add the product twice" do
+      Product.stub!(find: mock_model(Product))
+      cart.add_product(1)
+      cart.add_product(1)
+      cart.product_line_items.length.should eq 1
+    end
+
+    it "shouldn increase the quantity when adding product twice" do
+      Product.stub!(find: mock_model(Product))
+      cart.add_product(1)
+      cart.add_product(1)
+      cart.product_line_items.first.quantity.should eq 2
     end
   end
 end

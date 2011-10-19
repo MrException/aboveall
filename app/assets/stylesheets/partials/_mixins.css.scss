@@ -1,0 +1,22 @@
+@mixin product-tile($border: true) {
+  .product-small {
+    @if $border == true {
+      border: 2px dotted $border-color;
+      @include border-radius;
+    }
+
+    text-align: center;
+    padding: 5px;
+    margin: 5px;
+
+    img {
+      border: 2px solid $border-color;
+    }
+
+    &:hover {
+      background: $menu-background;
+      cursor: pointer;
+      cursor: hand;
+    }
+  }
+}

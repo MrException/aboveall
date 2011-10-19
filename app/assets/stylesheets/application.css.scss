@@ -13,6 +13,9 @@
 @import 'compass/utilities/tables/scaffolding';
 @import 'compass/utilities/tables/alternating-rows-and-columns';
 
+// custom mixins
+@import 'partials/mixins';
+
 // Here's where we define some default constants
 @import 'partials/base';
 
@@ -103,13 +106,6 @@ body {
     }
   }
 
-  #content.carts {
-    // Very specific selector, just needed for the 'Update' button on the cart
-    form.edit_cart input[type="submit"] {
-      float: right;
-    }
-  }
-
   #footer {
     @include column($blueprint-grid-columns, true);
     background: $menu-background;
@@ -121,6 +117,7 @@ body {
 
 // Import page specific files here
 @import 'products';
+@import 'carts';
 @import 'users';
 @import 'forms';
 

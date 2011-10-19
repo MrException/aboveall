@@ -1,0 +1,29 @@
+#content.carts {
+  // Very specific selector, just needed for the 'Update' button on the cart
+  form.edit_cart input[type="submit"] {
+    float: right;
+  }
+
+  @include product-tile(false);
+
+  table {
+    input {
+      width: 30px;
+      text-align: center;
+    }
+    tfoot {
+      text-align: right;
+    }
+    .field {
+      text-align: center;
+      width: 80px;
+    }
+    .money {
+      text-align: right;
+      width: 80px;
+    }
+    td.product {
+      width: 150px;
+    }
+  }
+}

@@ -48,7 +48,7 @@ textarea { overflow: auto; }
 //--------------------------------
 .ir { @include image-replacement; }
 
-.hidden { @include hidden; }
+.hidden { display: none; }
 
 .visuallyhidden { @include visually-hidden; }
 

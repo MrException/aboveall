@@ -15,6 +15,13 @@ module ApplicationHelper
      "Yukon"]
   end
 
+  def payment_methods
+    ["Credit Cart",
+    "Direct Deposit",
+    "Money Order or Cheque",
+    "Electronic"]
+  end
+
   def current_cart
     current_user.cart
   end

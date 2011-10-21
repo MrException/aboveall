@@ -1,0 +1,15 @@
+= simple_form_for current_user.payment do |f|
+  %fieldset
+    %legend Payment Information
+    - if current_user.payment.payment_method == "None"
+      #payment-form
+        = f.input :payment_method, collection: payment_methods
+        = f.submit
+    -else
+      #payment-form.hidden
+        = f.input :payment_method, collection: payment_methods
+        = f.submit
+      #payment-summary
+        %p= "Payment method: #{current_user.payment.payment_method}"
+        %p
+          %button#change-payment{ type: "button" } Change

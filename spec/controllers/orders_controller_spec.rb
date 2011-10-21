@@ -4,9 +4,29 @@ describe OrdersController do
   login_user
 
   let(:cart) { FactoryGirl.build(:cart) }
+  let(:order) { Order.from_cart cart }
 
   before do
     controller.current_user.cart = cart
+  end
+
+  describe "GET show" do
+    context "successful" do
+      it "shows the order" do
+        Order.should_receive(:find).and_return [order]
+        get :show, id: 1
+        assigns(:order).should be_a(Order)
+      end
+    end
+
+    context "failure" do
+      it "redirects to root path with failure message" do
+        get :show, id: -1
+        should redirect_to root_path
+        flash.alert.should_not be_nil
+      end
+
+    end
   end
 
   describe "GET new" do

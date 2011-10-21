@@ -11,10 +11,17 @@ class Ability
       can :manage, :all
     elsif user.authorized?
       can :read, Product
+
       can :read, Cart
       can :update, Cart
+
       can :manage, ProductLineItem
+
       can :create, Order
+      can :show, Order
+
+      can :read, Payment
+      can :update, Payment
     end
   end
 end

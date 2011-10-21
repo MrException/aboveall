@@ -51,6 +51,12 @@ $(document).ready ->
 	   mouseleave: hideTooltip
   })
 
+  $("button#change-payment").bind({
+    click: ->
+      $("#payment-form").show()
+      $("#payment-summary").hide()
+  })
+
 ###
 # Google web fonts
 WebFontConfig = {

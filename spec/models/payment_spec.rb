@@ -7,6 +7,6 @@ describe Payment do
 
   it "method should be a blank string after #new" do
     p = Payment.new
-    p.payment_method.should eq ""
+    p.payment_method.should eq "None"
   end
 end

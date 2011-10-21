@@ -10,6 +10,6 @@ class Payment < ActiveRecord::Base
   private
 
   def init
-    self.payment_method ||= String.new
+    self.payment_method ||= "None"
   end
 end

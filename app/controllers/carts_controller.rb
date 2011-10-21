@@ -1,5 +1,8 @@
 class CartsController < SecureController
   def show
+    if @cart.user != current_user
+      redirect_to root_path, alert: 'Access Denied'
+    end
   end
 
   def update

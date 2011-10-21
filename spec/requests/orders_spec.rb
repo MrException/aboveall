@@ -10,8 +10,10 @@ describe 'Orders' do
     click_link 'Shopping Cart'
     click_button 'Checkout'
     page.should have_content 'Order Summary'
-    find('#order-list').all('.product').length.should eq 1
-    click_button 'Place Order'
+    all('#order-list tbody tr').length.should eq 1
+    select "Credit Cart", from: "Payment method"
+    click_on 'Update Payment'
+    click_on 'Place Order'
     click_link 'Shopping Cart'
     page.should have_content 'Your Cart Is Empty'
   end

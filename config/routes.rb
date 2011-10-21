@@ -4,8 +4,9 @@ Aboveall::Application.routes.draw do
 
   resources :products
   resources :carts, only: [:show, :update]
-  resources :orders, only: [:new, :create]
+  resources :orders, only: [:new, :create, :show]
   resources :product_line_items, only: [:create, :update, :destroy]
+  resources :payments, only: [:update]
 
   namespace :admin do
     resources :users, only: [:index, :edit, :update] do

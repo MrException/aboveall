@@ -1,16 +1,4 @@
 #content .simple_form {
-  .left {
-    @include column(11);
-  }
-
-  .right {
-    @include column(11,true);
-  }
-
-  .bottom {
-    @include column($blueprint-grid-columns, true);
-  }
-
   @include blueprint-form-layout;
   @include blueprint-form-borders;
   @include blueprint-form-sizes(250px,350px);

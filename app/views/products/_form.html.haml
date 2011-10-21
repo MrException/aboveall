@@ -7,7 +7,7 @@
         - @product.errors.full_messages.each do |msg|
           %li= msg
 
-  .left
+  .left-col
     %fieldset
       %legend Info
       = f.input :title, hint: "A unique, descriptive title."
@@ -15,7 +15,7 @@
       = f.input :description, as: :text, hint: "As much information about this product as possible."
       = f.input :short_description, as: :text, hint: "A short description. This will show up in the cart and orders."
 
-  .right
+  .right-col
     %fieldset
       %legend Image
       - if @product.image.present?
@@ -29,5 +29,5 @@
           = f.label :image
           = f.file_field :image
 
-  .bottom
+  .stretch-col
     = f.submit

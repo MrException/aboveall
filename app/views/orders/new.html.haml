@@ -1,8 +1,32 @@
 %h1 Order Summary
-%table#order-list
-  %tr
-    %th Product Name
-  - @order.product_line_items.each do |pli|
-    %tr.product
-      %td= pli.product.title
+
+#address
+  %p This order will be shipped to:
+  %ul
+    %li= "#{current_user.first_name} #{current_user.last_name}"
+    %li= current_user.road
+    %li= "#{current_user.city}, #{current_user.province}"
+    %li= current_user.postal_code
+
+#order
+  %table#order-list
+    %thead
+      %tr
+        %th Product Name
+        %th Description
+        %th Quantity
+        %th Price
+    %tbody
+      - @order.product_line_items.each do |pli|
+        %tr.product
+          %td.product= pli.product.title
+          %td.desc= pli.product.short_description
+          %td= pli.quantity
+          %td= pli.total
+    %tfoot
+      %tr
+        %td{colspan: 3}
+          Subtotal
+        %td.money
+          = number_to_currency @order.total
 %p= button_to 'Place Order', orders_path

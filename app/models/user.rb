@@ -30,6 +30,8 @@ class User < ActiveRecord::Base
 
   has_one :cart
 
+  has_one :payment
+
   ### License Scan Attachment related stuff
   has_attached_file :license, styles: { medium: "400x400" }
 
@@ -89,5 +91,6 @@ class User < ActiveRecord::Base
   def init
     self.role ||= Role.unauthorized
     self.cart ||= Cart.new
+    self.payment ||= Payment.new
   end
 end

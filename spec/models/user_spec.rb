@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe User do
   it { should have_one(:cart) }
+  it { should have_one(:payment) }
   it { should belong_to(:role) }
   it "should validate presence of necessary fields" do
     should validate_presence_of(:first_name)
@@ -54,6 +55,11 @@ describe User do
     it "should have a cart set up" do
       u = User.new
       u.cart.should_not be_nil
+    end
+
+    it "should have a blank payment method" do
+      u = User.new
+      u.payment.should_not be_nil
     end
   end
 

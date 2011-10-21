@@ -13,10 +13,10 @@ describe Product do
   end
 
   it "should require fields" do
-    p = Product.new
-    p.should have(1).error_on(:title)
-    p.should have(1).error_on(:description)
-    p.should have(2).errors_on(:price)
+    should validate_presence_of :title
+    should validate_presence_of :description
+    should validate_presence_of :short_description
+    should validate_presence_of :price
   end
 
   it "should validate proper price" do

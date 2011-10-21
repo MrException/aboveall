@@ -50,6 +50,7 @@ FactoryGirl.define do
   factory :product do
     sequence(:title) { |n| "Product Name #{n}" }
     description "A nice product description here."
+    short_description "A short description."
     price 9.99
     image { fixture_file_upload(File.join(Rails.root, 'spec/test_image.jpg'), 'image/jpg')  }
     hidden false

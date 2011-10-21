@@ -76,31 +76,18 @@ describe "Products" do
 
     let(:image) { File.join(::Rails.root, 'spec/test_image.jpg')}
 
-    it "should not create with invalid data" do
-      visit root_path
-      click_on "Products"
-      click_on 'Create A New Product'
-      lambda do
-        fill_in "Title", :with => ""
-        fill_in "Description", :with => ""
-        fill_in "Price", :with => ""
-        click_on "Create Product"
-        page.should have_selector "#error_explanation"
-      end.should_not change(Product, :count)
-    end
-
     it "should create with valid data" do
       visit root_path
       click_on "Products"
       click_on 'Create A New Product'
-      lambda do
-        fill_in "Title", :with => "A Title"
-        fill_in "Description", :with => "A Description"
-        fill_in "Price", :with => "1000000.00"
-        attach_file "Image", image
-        click_on "Create Product"
-        page.should_not have_selector "div#error_explanation"
-      end.should change(Product, :count)
+      fill_in "Title", :with => "A Title"
+      fill_in "Description", :with => "A Description"
+      fill_in "Short description", :with => "A Short Description"
+      fill_in "Price", :with => "1000000.00"
+      attach_file "Image", image
+      click_on "Create Product"
+      page.should_not have_selector "div#error_explanation"
+      page.should have_content "successfully created"
     end
 
   end
@@ -111,18 +98,6 @@ describe "Products" do
       FactoryGirl.create(:product)
     end
 
-    it "should not save with invalid data" do
-      visit root_path
-      click_on 'Products'
-      find('#products-list').click_on 'Product Image'
-      click_on 'Edit'
-      fill_in "Title", :with => ""
-      fill_in "Description", :with => ""
-      fill_in "Price", :with => ""
-      click_on "Update Product"
-      page.should have_selector "#error_explanation"
-    end
-
     it "should save with valid data" do
       visit root_path
       click_on 'Products'
@@ -130,9 +105,11 @@ describe "Products" do
       click_on 'Edit'
       fill_in "Title", :with => "A Title"
       fill_in "Description", :with => "A Description"
+      fill_in "Short description", :with => "A Short Description"
       fill_in "Price", :with => "1000000.00"
       click_on "Update Product"
       page.should_not have_selector "div#error_explanation"
+      page.should have_content "successfully updated"
     end
   end
 end

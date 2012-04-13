@@ -1,4 +1,4 @@
-= Above All Compassion
+# Above All Compassion
 
 This is an (very unfortunately) failed Ruby on Rails project. It was intended to
 be an online store. Unfortunately, the company that asked me to build this,
@@ -12,7 +12,7 @@ for this store:
 3. It uses a somewhat custom authentication scheme.
 4. It was lots of work, and I learned a lot!
 
-== See it in action.
+## See it in action.
 
 Unfortunately, it is currently not deployed anywhere. It can be checked out and
 set up like any rails project. The database config right now points to MySQL,
